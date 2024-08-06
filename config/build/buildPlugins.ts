@@ -6,6 +6,7 @@ import { BuildOptions } from './types/types'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import CopyPlugin from 'copy-webpack-plugin'
+import ESLintPlugin from 'eslint-webpack-plugin'
 import path from 'path'
 
 export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
@@ -32,7 +33,14 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
   ]
 
   if (isDev) {
-    Plugins.push(new BundleAnalyzerPlugin(), new ReactRefreshWebpackPlugin())
+    Plugins.push(
+      new BundleAnalyzerPlugin(),
+      new ReactRefreshWebpackPlugin(),
+      new ESLintPlugin({
+        extensions: ['js', 'mjs', 'cjs', 'ts', 'jsx', 'tsx'],
+        exclude: 'node_modules',
+      })
+    )
   } else {
     Plugins.push(
       new MiniCssExtractPlugin({
