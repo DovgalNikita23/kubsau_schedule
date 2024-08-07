@@ -70,6 +70,11 @@
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4"
   },
+  "overrides": {
+    "react-scripts": {
+      "typescript": "^5"
+    }
+  },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

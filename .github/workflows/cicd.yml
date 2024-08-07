@@ -2,9 +2,9 @@ name: cicd-pipeline
 
 on:
   push:
-    branches: ["master"]
+    branches: ['build']
   pull_request:
-    branches: ["master"]
+    branches: ['build']
 
 jobs:
   build:
@@ -22,9 +22,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: install modules
-        run: npm install --force
-      - name: build project
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build project
         run: npm run build:prod
-      - name: run test
+
+      - name: Run tests
         run: npm run test
