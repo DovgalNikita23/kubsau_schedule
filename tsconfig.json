@@ -12,7 +12,8 @@
     "baseUrl": ".",
     "paths": {
       "@app/*": ["./src/app/*"],
-      "@pages/*": ["./src/pages/*"]
+      "@pages/*": ["./src/pages/*"],
+      "@shared/*": ["./src/shared/*"]
     }
   },
   "include": ["src/**/*", "tests/**/*", "declare.d.ts"],

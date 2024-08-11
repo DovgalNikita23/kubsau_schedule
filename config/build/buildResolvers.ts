@@ -10,6 +10,7 @@ export function buildResolvers(
       '@': options.paths.src,
       '@app': `${options.paths.src}/app`,
       '@pages': `${options.paths.src}/pages`,
+      '@shared': `${options.paths.src}/shared`,
     },
   }
 }
