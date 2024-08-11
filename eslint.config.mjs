@@ -15,6 +15,16 @@ export default [
       indent: ['error', 2], // Ошибка, если отступ не равен 2 пробелам
       'react/prop-types': 'off', // Отключить проверку типов пропсов в React компонентах
       'no-unused-vars': 'warn', // Предупреждение о неиспользуемых переменных
+      'sort-imports': [
+        'warn',
+        {
+          ignoreCase: true,
+          ignoreDeclarationSort: false,
+          ignoreMemberSort: false,
+          memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+          allowSeparatedGroups: false,
+        },
+      ],
     },
   },
 ]
