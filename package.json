@@ -12,7 +12,11 @@
     "build-storybook": "storybook build",
     "eslint": "npx eslint ./src",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!axios)/'",
-    "prittier": "npx prettier --write ./src"
+    "prittier": "npx prettier --write ./src",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{js,mjs,cjs,ts,jsx,tsx}": "eslint --fix"
   },
   "keywords": [],
   "author": "",
@@ -69,7 +73,8 @@
     "typescript-eslint": "^8.0.1",
     "webpack": "^5.89.0",
     "webpack-bundle-analyzer": "^4.10.1",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "husky": "^8.0.0"
   },
   "overrides": {
     "react-scripts": {

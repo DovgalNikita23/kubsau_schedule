@@ -8,15 +8,12 @@ export default [
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
   {
     languageOptions: { globals: globals.browser, parser: tsParser },
-    plugins: {
-      '@typescript-eslint': tseslint,
-    },
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   {
     rules: {
-      'no-console': 'warn', // Предупреждение при использовании console.log и других методов консоли
+      'no-console': 'error', // Предупреждение при использовании console.log и других методов консоли
       quotes: ['error', 'single'], // Ошибка, если используются не одинарные кавычки
       indent: ['error', 2], // Ошибка, если отступ не равен 2 пробелам
       'react/prop-types': 'off', // Отключить проверку типов пропсов в React компонентах
