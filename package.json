@@ -11,7 +11,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "eslint": "npx eslint ./src",
-    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!axios)/'"
+    "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!axios)/'",
+    "prittier": "npx prettier --write ./src"
   },
   "keywords": [],
   "author": "",

@@ -1,4 +1,4 @@
-import styles from './index.module.scss'
+import styles from './mainPage.module.scss'
 
 export const MainPage = () => {
   return (
