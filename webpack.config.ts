@@ -19,6 +19,7 @@ export default (env: EnvVariables) => {
     output: path.resolve(__dirname, 'build'),
     src: path.resolve(__dirname, 'src'),
     public: path.resolve(__dirname, 'public'),
+    context: path.resolve(__dirname),
   }
 
   const config: webpack.Configuration = buildWebpack({

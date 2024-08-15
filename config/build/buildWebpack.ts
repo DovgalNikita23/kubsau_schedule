@@ -11,6 +11,7 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
 
   return {
     mode: options.mode ?? 'development',
+    context: paths.context,
     entry: paths.entry,
     output: {
       path: paths.output,
