@@ -6,6 +6,7 @@ import styles from './button.module.scss'
 
 export const Button: FC<IButton> = ({
   children,
+  type = 'submit',
   dataTestId,
   color = 'inherit',
   fontColor = 'inherit',
@@ -32,6 +33,7 @@ export const Button: FC<IButton> = ({
 }) => {
   return (
     <MUIButton
+      type={type}
       data-testid={dataTestId}
       color={color}
       variant={variant}
