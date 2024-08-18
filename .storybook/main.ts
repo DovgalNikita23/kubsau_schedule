@@ -17,6 +17,18 @@ const config: StorybookConfig = {
     options: {},
   },
   webpackFinal: async (config) => {
+    // Обработка SCSS файлов
+    config.module?.rules?.push({
+      test: /\.scss$/,
+      use: [
+        'style-loader', // Вставляет стили в DOM через тег <style>
+        'css-loader', // Разбирает CSS в JavaScript
+        'sass-loader', // Разбирает SCSS в CSS
+      ],
+      include: path.resolve(__dirname, '../'),
+    })
+
+    // Настройка алиасов
     config.resolve = {
       ...config.resolve,
       alias: {
@@ -27,6 +39,7 @@ const config: StorybookConfig = {
       },
     }
 
+    // Настройка плагинов
     config.plugins = [
       ...(config.plugins || []),
       new webpack.ProvidePlugin({
