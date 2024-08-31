@@ -1,9 +1,9 @@
+import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import { MainPage } from './MainPage'
-import '@testing-library/jest-dom'
 
-describe('Example test', () => {
-  it('Render of component', () => {
+describe('MainPage', () => {
+  it('ContentExists', () => {
     render(<MainPage />)
 
     const searchElem = screen.getByTestId('content')

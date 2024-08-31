@@ -2,7 +2,7 @@ import { Configuration, DefinePlugin } from 'webpack'
 import { BuildOptions } from './types/types'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import CopyPlugin from 'copy-webpack-plugin'
-import ESLintPlugin from 'eslint-webpack-plugin'
+// import ESLintPlugin from 'eslint-webpack-plugin'
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
@@ -35,11 +35,11 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
   if (isDev) {
     Plugins.push(
       new BundleAnalyzerPlugin(),
-      new ReactRefreshWebpackPlugin(),
-      new ESLintPlugin({
-        extensions: ['js', 'mjs', 'cjs', 'ts', 'jsx', 'tsx'],
-        exclude: 'node_modules',
-      })
+      new ReactRefreshWebpackPlugin()
+      // new ESLintPlugin({
+      //   extensions: ['js', 'mjs', 'cjs', 'ts', 'jsx', 'tsx'],
+      //   exclude: 'node_modules',
+      // })
     )
   } else {
     Plugins.push(

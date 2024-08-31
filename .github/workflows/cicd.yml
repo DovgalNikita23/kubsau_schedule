@@ -2,9 +2,9 @@ name: cicd-pipeline
 
 on:
   push:
-    branches: ['build']
+    branches: ['build', 'main', 'dev', 'test', 'storybook', 'release', 'hotfix']
   pull_request:
-    branches: ['build']
+    branches: ['build', 'main', 'dev', 'test', 'storybook', 'release', 'hotfix']
 
 jobs:
   build:
