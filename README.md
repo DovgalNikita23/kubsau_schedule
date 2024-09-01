@@ -60,3 +60,10 @@
 ### Swagger
 
 - API располагаются по адресу: http://51.250.105.105:8080/swagger#/
+
+### Стенды:
+
+- prod: https://kubsau-shedule.netlify.app/
+- release: https://release--kubsau-shedule.netlify.app/
+- dev: https://dev--kubsau-shedule.netlify.app/
+- storybook: soon
