@@ -1,7 +1,11 @@
-$GREY_1: #a0a0a0;
-$BLACK: #000000;
+$OutlinedButtonContentColor: #7d7d7d;
+$OnBackground: #1c1e1b;
+$SecondaryT: rgba(137, 229, 137, 0.5);
+$Primary: #2a923f;
 
 :export {
-  GREY_1: $GREY_1;
-  BLACK: $BLACK;
+  OutlinedButtonContentColor: $OutlinedButtonContentColor;
+  OnBackground: $OnBackground;
+  SecondaryT: $SecondaryT;
+  Primary: $Primary;
 }

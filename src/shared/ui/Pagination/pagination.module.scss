@@ -1,0 +1,22 @@
+@import '@app/assets/variables/colors.module';
+
+:global {
+  .MuiPagination-root {
+    .MuiPagination-ul {
+      width: auto;
+      justify-content: space-between;
+    }
+
+    .MuiPaginationItem-root {
+      color: $OutlinedButtonContentColor;
+      border-radius: 0;
+      border-bottom: 3px solid transparent;
+
+      &.Mui-selected {
+        color: $OnBackground;
+        border-bottom: 3px solid $Primary;
+        background: none;
+      }
+    }
+  }
+}
