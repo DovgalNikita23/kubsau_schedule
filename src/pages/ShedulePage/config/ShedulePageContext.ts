@@ -1,8 +1,8 @@
 import { createContext, Dispatch, SetStateAction } from 'react'
 
-export interface IMainPageContext {
+export interface IShedulePageContext {
   isShowSnackBar?: boolean
   setIsShowSnackBar?: Dispatch<SetStateAction<boolean>>
 }
 
-export const MainPageContext = createContext<IMainPageContext | null>({})
+export const ShedulePageContext = createContext<IShedulePageContext | null>({})

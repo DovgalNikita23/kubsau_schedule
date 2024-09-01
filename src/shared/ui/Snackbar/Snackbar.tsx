@@ -1,7 +1,7 @@
 import { FC, useCallback, useContext } from 'react'
 import Slide, { SlideProps } from '@mui/material/Slide'
 import Snackbar, { SnackbarProps } from '@mui/material/Snackbar'
-import { MainPageContext } from '@pages/MainPage'
+import { ShedulePageContext } from '@pages/ShedulePage'
 
 function SlideTransition(props: SlideProps) {
   return <Slide {...props} direction="left" timeout={500} />
@@ -15,7 +15,7 @@ export const SnackBar: FC<SnackbarProps> = ({
   onClick,
   onClose,
 }) => {
-  const { isShowSnackBar, setIsShowSnackBar } = useContext(MainPageContext)
+  const { isShowSnackBar, setIsShowSnackBar } = useContext(ShedulePageContext)
 
   const handleClose = useCallback(() => {
     setIsShowSnackBar(false)

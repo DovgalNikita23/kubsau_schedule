@@ -1,10 +1,10 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import { MainPage } from './MainPage'
+import { ShedulePage } from './ShedulePage'
 
 describe('MainPage', () => {
   it('ContentExists', () => {
-    render(<MainPage />)
+    render(<ShedulePage />)
 
     const searchElem = screen.getByTestId('content')
 
