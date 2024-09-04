@@ -1,15 +1,34 @@
-import { ShedulePageContext } from './config'
+import {
+  $failConnect,
+  $failConnectInfo,
+  $isLoading,
+  $successConnectInfo,
+} from './config'
+import { Loader, useSnackBar } from '@shared/ui'
 import styles from './shedulePage.module.scss'
-import { useState } from 'react'
+import { useUnit } from 'effector-react'
 
 export const ShedulePage = () => {
-  const [isShowSnackBar, setIsShowSnackBar] = useState<boolean>(false)
+  const [isLoading, failConnect, failConnectInfo, successConnectInfo] = useUnit(
+    [$isLoading, $failConnect, $failConnectInfo, $successConnectInfo]
+  )
+  const { SnackBar } = useSnackBar({
+    message: failConnectInfo || successConnectInfo,
+  })
+
+  if (isLoading) {
+    return (
+      <div className={styles.shedulePage}>
+        <Loader size="50px" />
+        {failConnect && SnackBar}
+      </div>
+    )
+  }
 
   return (
-    <ShedulePageContext.Provider value={{ isShowSnackBar, setIsShowSnackBar }}>
-      <div className={styles.shedulePage}>
-        <div data-testid="content">Content here</div>
-      </div>
-    </ShedulePageContext.Provider>
+    <div className={styles.shedulePage}>
+      <div data-testid="content">Content here</div>
+      {successConnectInfo && SnackBar}
+    </div>
   )
 }

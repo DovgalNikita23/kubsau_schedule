@@ -3,7 +3,7 @@ import { SnackBar as SnackBarComponent } from '../Snackbar'
 import { SnackbarProps } from '@mui/material'
 
 export const useSnackBar = (props: SnackbarProps) => {
-  const [isShow, setIsShow] = useState<boolean>(false)
+  const [isShow, setIsShow] = useState<boolean>(true)
 
   const handleShowSnackBar = useCallback(() => {
     setIsShow(true)
