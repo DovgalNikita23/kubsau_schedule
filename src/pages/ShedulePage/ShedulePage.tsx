@@ -19,6 +19,7 @@ export const ShedulePage = () => {
   if (isLoading) {
     return (
       <div className={styles.shedulePage}>
+        <div data-testid="content">Content here</div>
         <Loader size="50px" />
         {failConnect && SnackBar}
       </div>
