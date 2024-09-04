@@ -3,12 +3,15 @@ import {
   $failConnectInfo,
   $isLoading,
   $successConnectInfo,
+  ShedulePageGate,
 } from './config'
 import { Loader, useSnackBar } from '@shared/ui'
+import { useGate, useUnit } from 'effector-react'
 import styles from './shedulePage.module.scss'
-import { useUnit } from 'effector-react'
 
 export const ShedulePage = () => {
+  useGate(ShedulePageGate)
+
   const [isLoading, failConnect, failConnectInfo, successConnectInfo] = useUnit(
     [$isLoading, $failConnect, $failConnectInfo, $successConnectInfo]
   )

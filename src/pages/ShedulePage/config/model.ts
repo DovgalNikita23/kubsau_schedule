@@ -1,12 +1,15 @@
-import { createEffect, createStore } from 'effector'
+import { createEffect, createStore, sample } from 'effector'
 import { or, pending } from 'patronum'
 import { AxiosError } from 'axios'
+import { createGate } from 'effector-react'
 import { getHealthCheck } from '@shared/api/methods'
 import { REQUEST_STATUSES } from '@shared/constants'
 
+//Gate
+export const ShedulePageGate = createGate('')
+
 //effects
 export const getHealthCheckFx = createEffect(getHealthCheck)
-getHealthCheckFx()
 
 //stores
 export const $failConnect = createStore<boolean>(false)
@@ -32,3 +35,9 @@ export const $successConnectInfo = createStore<string>(null).on(
 )
 
 export const $isLoading = or(pending([getHealthCheckFx]), $failConnect)
+
+//samples
+sample({
+  clock: ShedulePageGate.open,
+  target: getHealthCheckFx,
+})
