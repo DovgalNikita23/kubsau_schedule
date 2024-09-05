@@ -2,10 +2,12 @@ $OutlinedButtonContentColor: #7d7d7d;
 $OnBackground: #1c1e1b;
 $SecondaryT: rgba(137, 229, 137, 0.5);
 $Primary: #2a923f;
+$Background: #f4f8f9;
 
 :export {
   OutlinedButtonContentColor: $OutlinedButtonContentColor;
   OnBackground: $OnBackground;
   SecondaryT: $SecondaryT;
   Primary: $Primary;
+  Background: $Background;
 }
