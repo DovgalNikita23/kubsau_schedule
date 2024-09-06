@@ -24,6 +24,11 @@ export const SnackBar: FC<SnackbarProps> = ({
       TransitionComponent={SlideTransition}
       key="SnackBar"
       autoHideDuration={autoHideDuration}
+      sx={{
+        '@media (max-width: 576px)': {
+          marginBottom: '50px',
+        },
+      }}
     />
   )
 }

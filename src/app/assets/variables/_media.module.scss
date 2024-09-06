@@ -3,3 +3,11 @@ $medium: '768px';
 $large: '992px';
 $XL: '1200px';
 $XXL: '1400px';
+
+:export {
+  small: $small;
+  medium: $medium;
+  large: $large;
+  XL: $XL;
+  XXL: $XXL;
+}
