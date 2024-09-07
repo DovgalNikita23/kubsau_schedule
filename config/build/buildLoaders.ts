@@ -1,11 +1,14 @@
-import { buildBabelLoader } from './babel/buildBabelLoader'
+//@eslint-disable-next-line
+// import { buildBabelLoader } from './babel/buildBabelLoader'
 import { BuildOptions } from './types/types'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { ModuleOptions } from 'webpack'
-import path from 'path'
+//@eslint-disable-next-line
+// import path from 'path'
 import ReactRefreshTypeScript from 'react-refresh-typescript'
 
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
+  // eslint-disable-next-line
   const { mode, paths } = options
   const isDev = mode === 'development'
 
@@ -22,7 +25,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
               {
                 name: 'convertColors',
                 params: {
-                  currentColor: true,
+                  currentColor: false,
                 },
               },
             ],
