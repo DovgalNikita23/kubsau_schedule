@@ -26,7 +26,7 @@ export const SnackBar: FC<SnackbarProps> = ({
       autoHideDuration={autoHideDuration}
       sx={{
         '@media (max-width: 576px)': {
-          marginBottom: '50px',
+          marginBottom: '60px',
         },
       }}
     />

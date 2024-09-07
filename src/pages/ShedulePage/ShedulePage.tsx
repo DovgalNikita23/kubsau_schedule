@@ -7,11 +7,11 @@ import {
 } from './config'
 import { Loader, useSnackBar } from '@shared/ui'
 import { useGate, useUnit } from 'effector-react'
-import styles from './shedulePage.module.scss'
 import { Box } from '@mui/material'
+import { ShedulePageFooter } from './ShedulePageFooter'
 import { ShedulePageHeader } from './ShedulePageHeader'
 import { ShedulePageMain } from './ShedulePageMain'
-import { ShedulePageFooter } from './ShedulePageFooter'
+import styles from './shedulePage.module.scss'
 
 export const ShedulePage = () => {
   useGate(ShedulePageGate)
