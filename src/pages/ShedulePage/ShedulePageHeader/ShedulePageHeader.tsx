@@ -1,3 +1,4 @@
+import Calendar from '@app/assets/svg/Calendar.svg'
 import { FC } from 'react'
 import { Pagination } from '@shared/ui'
 import styles from '../shedulePage.module.scss'
@@ -17,7 +18,11 @@ export const ShedulePageHeader: FC<IShedulePageHeader> = ({ children }) => {
           </div>
         </div>
         <div className={styles.title}>Расписание</div>
-        <div className={styles.datePicker}></div>
+        <div className={styles.datePickerBlock}>
+          <div className={styles.datePicker}>
+            <Calendar width="100%" height="100%" />
+          </div>
+        </div>
       </div>
       <div className={styles.carousel}>
         <Pagination total={60} />
