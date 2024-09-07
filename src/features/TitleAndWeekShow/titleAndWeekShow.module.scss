@@ -1,0 +1,50 @@
+@import '@app/assets/variables/media.module';
+
+$fontSizeGroupSmall: 20px;
+$fontSizeGroupXXL: 40px;
+$fontSizeWeekSmall: 18px;
+$fontSizeWeekXXL: 30px;
+
+.TitleAndWeekShow {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-family: Oswald-Regular;
+  gap: 10px;
+  height: $fontSizeGroupXXL;
+  line-height: $fontSizeGroupXXL;
+
+  @media (max-width: $small) {
+    height: $fontSizeGroupSmall;
+    line-height: $fontSizeGroupSmall;
+    gap: 5px;
+  }
+
+  .groupName {
+    font-size: $fontSizeGroupXXL;
+
+    @media (max-width: $small) {
+      font-size: $fontSizeGroupSmall;
+    }
+  }
+
+  .devider {
+    height: 100%;
+    width: 5px;
+    background-color: black;
+
+    @media (max-width: $small) {
+      width: 2.5px;
+    }
+  }
+
+  .weekNumber {
+    font-size: $fontSizeWeekXXL;
+    line-height: $fontSizeWeekXXL;
+
+    @media (max-width: $small) {
+      font-size: $fontSizeWeekSmall;
+      line-height: $fontSizeWeekSmall;
+    }
+  }
+}

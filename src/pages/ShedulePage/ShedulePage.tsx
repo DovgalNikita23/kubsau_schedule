@@ -12,6 +12,7 @@ import { Box } from '@mui/material'
 import { ShedulePageHeader } from './ShedulePageHeader'
 import { ShedulePageMain } from './ShedulePageMain'
 import styles from './shedulePage.module.scss'
+import { TitleAndWeekShow } from '@features/TitleAndWeekShow'
 
 export const ShedulePage = () => {
   useGate(ShedulePageGate)
@@ -47,7 +48,9 @@ export const ShedulePage = () => {
   return (
     <div className={styles.shedulePage}>
       <ShedulePageHeader />
-      <ShedulePageMain></ShedulePageMain>
+      <ShedulePageMain>
+        <TitleAndWeekShow groupName="ПИ2002" weekNumber={0} />
+      </ShedulePageMain>
       {/* <ShedulePageFooter /> - TODO: на будущее*/}
       {successConnectInfo && SnackBar}
     </div>
