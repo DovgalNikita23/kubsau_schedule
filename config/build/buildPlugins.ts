@@ -28,6 +28,10 @@ export function buildPlugins(options: BuildOptions): Configuration['plugins'] {
           from: path.resolve(paths.public, 'locales'),
           to: `${path.resolve(paths.output)}/locales`,
         },
+        {
+          from: `${path.resolve(paths.public)}/netlify.toml`,
+          to: `${path.resolve(paths.output)}/netlify.toml`,
+        },
       ],
     }),
   ]
