@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Pagination } from '@shared/ui'
 import styles from '../shedulePage.module.scss'
-import UStudentLogo from '@app/assets/svg/uStudentLogo.svg'
+import UStudentLogo from '@app/assets/svg/UStudentLogo.svg'
 
 interface IShedulePageHeader {
   children?: React.ReactNode

@@ -1,29 +1,41 @@
 import './pagination.module.scss'
+import { FC, useCallback, useMemo } from 'react'
 import { Pagination as PaginataionAntd, PaginationProps } from 'antd'
-import { FC } from 'react'
+import dayjs from 'dayjs'
+import { getWeekDays } from '@shared/utils'
 
 export const Pagination: FC<PaginationProps> = (props) => {
-  const itemRender: PaginationProps['itemRender'] = (
-    _,
-    type,
-    originalElement
-  ) => {
-    if (type === 'prev') {
-      return originalElement
-    }
-    if (type === 'next') {
-      return originalElement
-    }
+  const weekDays = useMemo(() => getWeekDays(), [])
 
-    return (
-      <div className="PaginationItem">
-        <div className="dayNumber">04</div>
-        <div className="weekDay">Пн</div>
-      </div>
-    )
-  }
+  const currentWeekday = dayjs().isoWeekday()
+
+  const itemRender: PaginationProps['itemRender'] = useCallback(
+    (_, type, originalElement) => {
+      if (type === 'prev' || type === 'next') {
+        return originalElement
+      }
+
+      const currentDay = weekDays[+_ - 1]
+
+      if (currentDay) {
+        return (
+          <div className="PaginationItem">
+            <div className="dayNumber">{currentDay.day_of_week_str}</div>
+            <div className="weekDay">{currentDay.day_of_week}</div>
+          </div>
+        )
+      }
+
+      return originalElement
+    },
+    [weekDays]
+  )
 
   return (
-    <PaginataionAntd {...props} itemRender={itemRender} defaultCurrent={1} />
+    <PaginataionAntd
+      {...props}
+      itemRender={itemRender}
+      defaultCurrent={currentWeekday > 6 ? 6 : currentWeekday}
+    />
   )
 }
