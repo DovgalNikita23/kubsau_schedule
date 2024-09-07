@@ -11,6 +11,8 @@ export function buildResolvers(
       '@app': `${options.paths.src}/app`,
       '@pages': `${options.paths.src}/pages`,
       '@shared': `${options.paths.src}/shared`,
+      '@features': `${options.paths.src}/features`,
+      '@widgets': `${options.paths.src}/widgets`,
     },
   }
 }

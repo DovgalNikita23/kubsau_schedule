@@ -13,7 +13,9 @@
     "paths": {
       "@app/*": ["./src/app/*"],
       "@pages/*": ["./src/pages/*"],
-      "@shared/*": ["./src/shared/*"]
+      "@shared/*": ["./src/shared/*"],
+      "@features/*": ["./src/features/*"],
+      "@widgets/*": ["./src/widgets/*"]
     }
   },
   "include": ["src/**/*", "tests/**/*", "declare.d.ts"],
