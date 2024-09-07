@@ -67,8 +67,12 @@
         height: 3px;
         background-color: $Primary;
         left: 0;
-        bottom: -5px;
+        bottom: -7.5px;
         border-radius: 10px;
+
+        @media (max-width: $small) {
+          bottom: -5px;
+        }
       }
     }
 
