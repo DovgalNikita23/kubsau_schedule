@@ -96,6 +96,7 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.7",
+    "antd": "^5.20.5",
     "classnames": "^2.5.1",
     "effector": "^23.2.2",
     "effector-react": "^23.2.1",
