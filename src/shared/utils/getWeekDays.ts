@@ -10,11 +10,11 @@ interface IGetWeekDays {
 
 dayjs.extend(isoWeek)
 
-export const getWeekDays = (): IGetWeekDays[] => {
+export const getWeekDays = (currentWeek = 0): IGetWeekDays[] => {
   const daysOfWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
 
   // Получаем понедельник текущей недели
-  const monday = dayjs().isoWeekday(1)
+  const monday = dayjs().isoWeekday(1 + 7 * currentWeek)
 
   const week = []
 
