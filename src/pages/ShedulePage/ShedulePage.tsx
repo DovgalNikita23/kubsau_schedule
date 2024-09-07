@@ -8,7 +8,7 @@ import {
 import { Loader, useSnackBar } from '@shared/ui'
 import { useGate, useUnit } from 'effector-react'
 import { Box } from '@mui/material'
-import { ShedulePageFooter } from './ShedulePageFooter'
+// import { ShedulePageFooter } from './ShedulePageFooter'
 import { ShedulePageHeader } from './ShedulePageHeader'
 import { ShedulePageMain } from './ShedulePageMain'
 import styles from './shedulePage.module.scss'
@@ -38,7 +38,7 @@ export const ShedulePage = () => {
             <Loader size="50px" />
           </Box>
         </ShedulePageMain>
-        <ShedulePageFooter />
+        {/* <ShedulePageFooter /> - TODO: на будущее*/}
         {failConnect && SnackBar}
       </div>
     )
@@ -48,7 +48,7 @@ export const ShedulePage = () => {
     <div className={styles.shedulePage}>
       <ShedulePageHeader />
       <ShedulePageMain></ShedulePageMain>
-      <ShedulePageFooter />
+      {/* <ShedulePageFooter /> - TODO: на будущее*/}
       {successConnectInfo && SnackBar}
     </div>
   )
