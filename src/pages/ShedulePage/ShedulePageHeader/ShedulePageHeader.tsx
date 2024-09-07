@@ -1,6 +1,6 @@
 import { FC } from 'react'
+import { Pagination } from '@shared/ui'
 import styles from '../shedulePage.module.scss'
-import { Pagination } from '@mui/material'
 
 interface IShedulePageHeader {
   children?: React.ReactNode
@@ -13,7 +13,7 @@ export const ShedulePageHeader: FC<IShedulePageHeader> = ({ children }) => {
         <div className={styles.title}>Расписание</div>
       </div>
       <div className={styles.carousel}>
-        <Pagination count={6} />
+        <Pagination total={60} />
       </div>
       {children}
     </header>
