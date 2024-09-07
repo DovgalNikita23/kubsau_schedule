@@ -85,7 +85,8 @@
     "webpack": "^5.89.0",
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
-    "yup": "^1.4.0"
+    "yup": "^1.4.0",
+    "dayjs": "^1.11.13"
   },
   "overrides": {
     "react-scripts": {
