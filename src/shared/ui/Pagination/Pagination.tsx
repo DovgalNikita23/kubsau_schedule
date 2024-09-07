@@ -18,7 +18,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
     return (
       <div className="PaginationItem">
         <div className="dayNumber">04</div>
-        <div className="weekDay">ПН</div>
+        <div className="weekDay">Пн</div>
       </div>
     )
   }

@@ -15,6 +15,9 @@
     .ant-pagination-item {
       border: 0;
       border-radius: 0;
+      font-family: Roboto-Bold;
+      color: $OutlinedButtonContentColor;
+      font-weight: 700;
       background-color: transparent;
 
       &:hover {
@@ -80,7 +83,7 @@
     .weekDay {
       @include flexRow_CC;
       height: 50%;
-      font-size: 16px;
+      font-size: 20px;
 
       @media (max-width: $small) {
         font-size: 16px;
