@@ -49,7 +49,9 @@ export const ShedulePage = () => {
     <div className={styles.shedulePage}>
       <ShedulePageHeader />
       <ShedulePageMain>
-        <TitleAndWeekShow groupName="ПИ2002" weekNumber={0} />
+        <div className={styles.titleAndWeekShow}>
+          <TitleAndWeekShow groupName="ПИ2002" weekNumber={0} />
+        </div>
       </ShedulePageMain>
       {/* <ShedulePageFooter /> - TODO: на будущее*/}
       {successConnectInfo && SnackBar}
