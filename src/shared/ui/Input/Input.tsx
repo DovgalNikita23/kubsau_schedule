@@ -1,7 +1,7 @@
 import './Input.module.scss'
-import styles from '@app/assets/variables/_colors.module.scss'
 import { StandardTextFieldProps, TextField } from '@mui/material'
 import { FC } from 'react'
+import styles from '@app/assets/variables/_colors.module.scss'
 
 interface IInput extends StandardTextFieldProps {
   width?: string
@@ -17,6 +17,7 @@ export const Input: FC<IInput> = ({
   placeholder = 'Введите ...',
   focusColor = styles.Primary,
   backgroundColor = styles.Surface,
+  ...props
 }) => {
   return (
     <TextField
@@ -43,6 +44,7 @@ export const Input: FC<IInput> = ({
         },
       }}
       label={placeholder}
+      {...props}
     />
   )
 }

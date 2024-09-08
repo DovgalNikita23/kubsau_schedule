@@ -60,7 +60,7 @@ export const ShedulePage = () => {
           />
         </div>
         <div className={styles.inputBlock}>
-          <Input placeholder="Группа, преподаватель, аудитория" />
+          <Input placeholder="Группа, преподаватель, аудитория" error />
         </div>
       </ShedulePageMain>
       {/* <ShedulePageFooter /> - TODO: на будущее*/}
