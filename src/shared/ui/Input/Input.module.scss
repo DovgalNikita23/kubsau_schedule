@@ -1,0 +1,21 @@
+:global {
+  .MuiFormControl-root {
+    border-radius: 12px !important;
+  }
+
+  .MuiInputBase-root {
+    height: 100%;
+    border-radius: 12px !important;
+  }
+
+  .MuiOutlinedInput-input {
+    height: inherit;
+  }
+
+  .MuiInputLabel-root {
+    line-height: 100% !important;
+  }
+
+  .MuiFormLabel-root {
+  }
+}
