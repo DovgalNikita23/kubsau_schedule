@@ -9,7 +9,8 @@ export const Pagination: FC<PaginationProps> = (props) => {
   const [currentWeek, setCurrentWeek] = useState<number>(0)
 
   const weekDays = useMemo(() => getWeekDays(currentWeek), [currentWeek]) //функция получения недель с наборами данных
-  const currentWeekday = dayjs().isoWeekday() //текущий номер дня недели
+  const currentWeekday =
+    dayjs().isoWeekday() > 6 ? dayjs().isoWeekday() - 1 : dayjs().isoWeekday() //текущий номер дня недели
 
   const [currentDay, setCurrentDay] = useState<number>(currentWeekday) //стейт для управляемого контрола текущего дня в Pagination
 
