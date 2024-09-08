@@ -103,6 +103,14 @@
         margin-top: 15px;
       }
     }
+
+    .updateDateBlock {
+      margin-top: 10px;
+
+      @media (max-width: $small) {
+        margin-top: 5px;
+      }
+    }
   }
 
   .shedulePageFooter {

@@ -13,6 +13,7 @@ import { ShedulePageHeader } from './ShedulePageHeader'
 import { ShedulePageMain } from './ShedulePageMain'
 import styles from './shedulePage.module.scss'
 import { TitleAndWeekShow } from '@features/TitleAndWeekShow'
+import { DateUpdateShow } from '@features/DateUpdateShow'
 
 export const ShedulePage = () => {
   useGate(ShedulePageGate)
@@ -51,6 +52,12 @@ export const ShedulePage = () => {
       <ShedulePageMain>
         <div className={styles.titleAndWeekShow}>
           <TitleAndWeekShow groupName="ПИ2002" weekNumber={0} />
+          <div className={styles.updateDateBlock}>
+            <DateUpdateShow
+              date="2024-09-08T09:00:16.498Z"
+              formatPattern="YYYY-MM-DD"
+            />
+          </div>
         </div>
       </ShedulePageMain>
       {/* <ShedulePageFooter /> - TODO: на будущее*/}

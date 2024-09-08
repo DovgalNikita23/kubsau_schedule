@@ -1,13 +1,13 @@
 @import '@app/assets/variables/media.module';
 
-$fontSizeGroupSmall: 20px;
+$fontSizeGroupSmall: 24px;
 $fontSizeGroupXXL: 40px;
 $fontSizeWeekSmall: 18px;
 $fontSizeWeekXXL: 30px;
 
 .TitleAndWeekShow {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
   font-family: Oswald-Regular;
   gap: 10px;

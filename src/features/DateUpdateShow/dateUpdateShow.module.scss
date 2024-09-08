@@ -1,0 +1,10 @@
+@import '@app/assets/variables/media.module';
+
+.dateUpdateShow {
+  font-family: Roboto-Medium;
+  font-size: 16px;
+
+  @media (max-width: $small) {
+    font-size: 10px;
+  }
+}
