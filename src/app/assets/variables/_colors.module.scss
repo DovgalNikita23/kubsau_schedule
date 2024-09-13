@@ -4,6 +4,8 @@ $SecondaryT: rgba(137, 229, 137, 0.5);
 $Primary: #2a923f;
 $Background: #f4f8f9;
 $Surface: #fdffff;
+$Green: #2fb14a;
+$OnPrimary: #f1efef;
 
 :export {
   OutlinedButtonContentColor: $OutlinedButtonContentColor;
@@ -12,4 +14,6 @@ $Surface: #fdffff;
   Primary: $Primary;
   Background: $Background;
   Surface: $Surface;
+  Green: $Green;
+  OnPrimary: $OnPrimary;
 }
