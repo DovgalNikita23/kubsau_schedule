@@ -1,1 +1,0 @@
-export { ShedulePageFooter } from './ShedulePageFooter'

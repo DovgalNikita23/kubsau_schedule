@@ -6,5 +6,5 @@ interface ShedulePageMain {
 }
 
 export const ShedulePageMain: FC<ShedulePageMain> = ({ children }) => {
-  return <header className={styles.shedulePageMain}>{children}</header>
+  return <main className={styles.shedulePageMain}>{children}</main>
 }

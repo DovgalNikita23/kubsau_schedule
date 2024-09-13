@@ -8,14 +8,13 @@ import {
 import { IconButton, Input, Loader, useSnackBar } from '@shared/ui'
 import { useGate, useUnit } from 'effector-react'
 import { Box } from '@mui/material'
+import colors from '@app/assets/variables/_colors.module.scss'
 import { DateUpdateShow } from '@features/DateUpdateShow'
 import SearchIcon from '@mui/icons-material/Search'
 import { ShedulePageHeader } from './ShedulePageHeader'
 import { ShedulePageMain } from './ShedulePageMain'
 import styles from './shedulePage.module.scss'
 import { TitleAndWeekShow } from '@features/TitleAndWeekShow'
-import colors from '@app/assets/variables/_colors.module.scss'
-// import { ShedulePageFooter } from './ShedulePageFooter'
 
 export const ShedulePage = () => {
   useGate(ShedulePageGate)
@@ -42,7 +41,6 @@ export const ShedulePage = () => {
             <Loader size="50px" />
           </Box>
         </ShedulePageMain>
-        {/* <ShedulePageFooter /> - TODO: на будущее*/}
         {failConnect && SnackBar}
       </div>
     )
@@ -62,13 +60,12 @@ export const ShedulePage = () => {
           />
         </div>
         <div className={styles.inputBlock}>
-          <Input placeholder="Группа, преподаватель, аудитория" error />
+          <Input placeholder="Группа, преподаватель, аудитория" />
           <IconButton size="large">
             <SearchIcon sx={{ color: colors.OnPrimary }} />
           </IconButton>
         </div>
       </ShedulePageMain>
-      {/* <ShedulePageFooter /> - TODO: на будущее*/}
       {successConnectInfo && SnackBar}
     </div>
   )
