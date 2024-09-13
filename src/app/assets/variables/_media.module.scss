@@ -1,3 +1,4 @@
+$mobileS: '320px';
 $small: '576px';
 $medium: '768px';
 $large: '992px';
@@ -5,6 +6,7 @@ $XL: '1200px';
 $XXL: '1400px';
 
 :export {
+  mobileS: $mobileS;
   small: $small;
   medium: $medium;
   large: $large;

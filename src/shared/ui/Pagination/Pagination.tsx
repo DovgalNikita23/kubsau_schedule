@@ -13,6 +13,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
     dayjs().isoWeekday() > 6 ? dayjs().isoWeekday() - 1 : dayjs().isoWeekday() //текущий номер дня недели
 
   const [currentDay, setCurrentDay] = useState<number>(currentWeekday) //стейт для управляемого контрола текущего дня в Pagination
+  const [сurrentChosenDay, setCurrentChosenDay] = useState<number>(null) //стейт для управляемого контрола выбранного дня в Pagination
 
   const handlePrev = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation()
@@ -30,7 +31,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
     dayOfWeekNum: number
   ) => {
     e.stopPropagation()
-    setCurrentDay(dayOfWeekNum)
+    setCurrentChosenDay(dayOfWeekNum)
   }
 
   const itemRender: PaginationProps['itemRender'] = useCallback(
@@ -47,9 +48,13 @@ export const Pagination: FC<PaginationProps> = (props) => {
 
       return (
         <div
-          className={classNames('PaginationItem', {
-            active: currentDay === currentDayValue.day_of_week_num,
-          })}
+          className={classNames('PaginationItem', [
+            {
+              activeChosen:
+                сurrentChosenDay === currentDayValue.day_of_week_num,
+              active: currentDay === currentDayValue.day_of_week_num,
+            },
+          ])}
           onClick={(e) => handleCurrent(e, currentDayValue.day_of_week_num)}
         >
           <div className="dayNumber">{currentDayValue.day_of_week_str}</div>
@@ -57,7 +62,7 @@ export const Pagination: FC<PaginationProps> = (props) => {
         </div>
       )
     },
-    [weekDays, currentDay]
+    [weekDays, currentDay, сurrentChosenDay]
   )
 
   return (
@@ -65,7 +70,10 @@ export const Pagination: FC<PaginationProps> = (props) => {
       {...props}
       itemRender={itemRender}
       onChange={null}
-      current={currentDay || (currentWeekday > 6 ? 6 : currentWeekday)}
+      current={
+        (сurrentChosenDay ?? currentDay) ||
+        (currentWeekday > 6 ? 6 : currentWeekday)
+      }
     />
   )
 }
