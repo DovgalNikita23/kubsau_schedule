@@ -1,4 +1,4 @@
-import { createEffect, createStore, sample } from 'effector'
+import { createEffect, createEvent, createStore, sample } from 'effector'
 import { or, pending } from 'patronum'
 import { AxiosError } from 'axios'
 import { createGate } from 'effector-react'
@@ -10,6 +10,10 @@ export const ShedulePageGate = createGate('')
 
 //effects
 export const getHealthCheckFx = createEffect(getHealthCheck)
+
+//events
+export const setInputValueHandler = createEvent<string>()
+export const searchInputHandlerEvent = createEvent<void>()
 
 //stores
 export const $failConnect = createStore<boolean>(false)
@@ -36,8 +40,21 @@ export const $successConnectInfo = createStore<string>(null).on(
 
 export const $isLoading = or(pending([getHealthCheckFx]), $failConnect)
 
+export const $inputValue = createStore<string>('').on(
+  setInputValueHandler,
+  (_, payload) => payload
+)
+export const $isInputValueEmpty = createStore<boolean>(false)
+
 //samples
 sample({
   clock: ShedulePageGate.open,
   target: getHealthCheckFx,
+})
+
+sample({
+  clock: [searchInputHandlerEvent, setInputValueHandler],
+  source: $inputValue,
+  fn: (inputValue) => inputValue.trim() === '',
+  target: $isInputValueEmpty,
 })

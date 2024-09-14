@@ -1,13 +1,18 @@
 import {
   $failConnect,
   $failConnectInfo,
+  $inputValue,
+  $isInputValueEmpty,
   $isLoading,
   $successConnectInfo,
+  searchInputHandlerEvent,
+  setInputValueHandler,
   ShedulePageGate,
 } from './config'
 import { IconButton, Input, Loader, useSnackBar } from '@shared/ui'
 import { useGate, useUnit } from 'effector-react'
 import { Box } from '@mui/material'
+import { ChangeEvent } from 'react'
 import colors from '@app/assets/variables/_colors.module.scss'
 import { DateUpdateShow } from '@features/DateUpdateShow'
 import SearchIcon from '@mui/icons-material/Search'
@@ -19,12 +24,39 @@ import { TitleAndWeekShow } from '@features/TitleAndWeekShow'
 export const ShedulePage = () => {
   useGate(ShedulePageGate)
 
-  const [isLoading, failConnect, failConnectInfo, successConnectInfo] = useUnit(
-    [$isLoading, $failConnect, $failConnectInfo, $successConnectInfo]
-  )
-  const { SnackBar } = useSnackBar({
+  const [
+    isLoading,
+    failConnect,
+    failConnectInfo,
+    successConnectInfo,
+    inputValue,
+    setInputValue,
+    isInputValueEmpty,
+    searchInputHandler,
+  ] = useUnit([
+    $isLoading,
+    $failConnect,
+    $failConnectInfo,
+    $successConnectInfo,
+    $inputValue,
+    setInputValueHandler,
+    $isInputValueEmpty,
+    searchInputHandlerEvent,
+  ])
+  const { SnackBar, handleShowSnackBar } = useSnackBar({
     message: failConnectInfo || successConnectInfo,
   })
+
+  const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.currentTarget.value)
+  }
+
+  const handleSearch = () => {
+    searchInputHandler()
+    if (isInputValueEmpty) {
+      handleShowSnackBar('Введите группу, преподавателя или аудиторию')
+    }
+  }
 
   if (isLoading) {
     return (
@@ -60,8 +92,13 @@ export const ShedulePage = () => {
           />
         </div>
         <div className={styles.inputBlock}>
-          <Input placeholder="Группа, преподаватель, аудитория" />
-          <IconButton size="large">
+          <Input
+            placeholder="Группа, преподаватель, аудитория"
+            value={inputValue}
+            onChange={handleInputValue}
+            error={isInputValueEmpty}
+          />
+          <IconButton size="large" onClick={handleSearch}>
             <SearchIcon sx={{ color: colors.OnPrimary }} />
           </IconButton>
         </div>

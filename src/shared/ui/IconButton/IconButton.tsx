@@ -11,16 +11,14 @@ interface IIconButtonProps extends IconButtonProps {
   height?: string
 }
 
-export const IconButton: FC<IIconButtonProps> = (
-  {
-    children,
-    iconColor = colors.Background,
-    backgroundColor = colors.Green,
-    width = '50px',
-    height = '50px',
-  },
-  props: IconButtonProps
-) => {
+export const IconButton: FC<IIconButtonProps> = ({
+  children,
+  iconColor = colors.Background,
+  backgroundColor = colors.Green,
+  width = '50px',
+  height = '50px',
+  ...props
+}) => {
   return (
     <IconButtonMui
       {...props}
