@@ -4,6 +4,8 @@ import {
   $inputValue,
   $isInputValueEmpty,
   $isLoading,
+  $isScheduleDataLoading,
+  $scheduleData,
   $successConnectInfo,
   searchInputHandlerEvent,
   setInputValueHandler,
@@ -33,6 +35,8 @@ export const ShedulePage = () => {
     setInputValue,
     isInputValueEmpty,
     searchInputHandler,
+    isScheduleDataLoading,
+    // scheduleData,
   ] = useUnit([
     $isLoading,
     $failConnect,
@@ -42,6 +46,8 @@ export const ShedulePage = () => {
     setInputValueHandler,
     $isInputValueEmpty,
     searchInputHandlerEvent,
+    $isScheduleDataLoading,
+    $scheduleData,
   ])
   const { SnackBar, handleShowSnackBar } = useSnackBar({
     message: failConnectInfo || successConnectInfo,
@@ -101,6 +107,19 @@ export const ShedulePage = () => {
           <IconButton size="large" onClick={handleSearch}>
             <SearchIcon sx={{ color: colors.OnPrimary }} />
           </IconButton>
+        </div>
+        <div className={styles.scheduleBlock}>
+          {isScheduleDataLoading && (
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              width="100%"
+              height="100%"
+            >
+              <Loader size="50px" />
+            </Box>
+          )}
         </div>
       </ShedulePageMain>
       {successConnectInfo && SnackBar}

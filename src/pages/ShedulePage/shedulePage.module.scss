@@ -107,7 +107,7 @@
     .updateDateBlock {
       margin-top: 15px;
 
-      @media (max-width: $small) {
+      @media (max-width: $large) {
         margin-top: 10px;
       }
     }
@@ -124,20 +124,19 @@
         margin-top: 10px;
       }
     }
-  }
 
-  .shedulePageFooter {
-    @media (max-width: $small) {
-      position: fixed;
-      bottom: 0;
+    .scheduleBlock {
       display: flex;
       width: 100%;
-      height: 60px;
-      box-shadow: 2px 2px 2px 4px rgb(0 0 0 / 20%);
-    }
+      height: 100%;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      background-color: red;
 
-    @media (min-width: $large) {
-      display: none;
+      @media (max-width: $large) {
+        margin-top: 10px;
+        margin-bottom: 15px;
+      }
     }
   }
 }
