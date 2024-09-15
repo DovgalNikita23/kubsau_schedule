@@ -11,12 +11,13 @@ import {
   setInputValueHandler,
   ShedulePageGate,
 } from './config'
-import { IconButton, Input, Loader, useSnackBar } from '@shared/ui'
+import { ChangeEvent, useEffect } from 'react'
+import { IconButton, Input, TextButton, useSnackBar } from '@shared/ui'
 import { useGate, useUnit } from 'effector-react'
-import { Box } from '@mui/material'
-import { ChangeEvent } from 'react'
 import colors from '@app/assets/variables/_colors.module.scss'
 import { DateUpdateShow } from '@features/DateUpdateShow'
+import { FullScreenLoader } from '@features/FullScreenLoader'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import SearchIcon from '@mui/icons-material/Search'
 import { ShedulePageHeader } from './ShedulePageHeader'
 import { ShedulePageMain } from './ShedulePageMain'
@@ -58,26 +59,33 @@ export const ShedulePage = () => {
   }
 
   const handleSearch = () => {
-    searchInputHandler()
     if (isInputValueEmpty) {
       handleShowSnackBar('Введите группу, преподавателя или аудиторию')
+    } else {
+      searchInputHandler()
     }
   }
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        handleSearch()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
 
   if (isLoading) {
     return (
       <div className={styles.shedulePage}>
         <ShedulePageHeader />
         <ShedulePageMain>
-          <Box
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            width="100%"
-            height="100%"
-          >
-            <Loader size="50px" />
-          </Box>
+          <FullScreenLoader />
         </ShedulePageMain>
         {failConnect && SnackBar}
       </div>
@@ -109,17 +117,13 @@ export const ShedulePage = () => {
           </IconButton>
         </div>
         <div className={styles.scheduleBlock}>
-          {isScheduleDataLoading && (
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              width="100%"
-              height="100%"
-            >
-              <Loader size="50px" />
-            </Box>
-          )}
+          {isScheduleDataLoading && <FullScreenLoader />}
+        </div>
+        <div className={styles.fullScheduleButton}>
+          <TextButton
+            caption="Полное расписание"
+            endIcon={<KeyboardArrowRightIcon />}
+          />
         </div>
       </ShedulePageMain>
       {successConnectInfo && SnackBar}

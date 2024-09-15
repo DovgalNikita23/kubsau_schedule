@@ -6,6 +6,9 @@ $Background: #f4f8f9;
 $Surface: #fdffff;
 $Green: #2fb14a;
 $OnPrimary: #f1efef;
+$OutlinedButtonText: #7d7d7d;
+$OutlinedButtonBackground: #ffffff;
+$OutlinedButtonBorder: rgba(200, 200, 200, 0.5);
 
 :export {
   OutlinedButtonContentColor: $OutlinedButtonContentColor;
@@ -16,4 +19,7 @@ $OnPrimary: #f1efef;
   Surface: $Surface;
   Green: $Green;
   OnPrimary: $OnPrimary;
+  OutlinedButtonText: $OutlinedButtonText;
+  OutlinedButtonBackground: $OutlinedButtonBackground;
+  OutlinedButtonBorder: $OutlinedButtonBorder;
 }
