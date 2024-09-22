@@ -1,11 +1,11 @@
 import {
+  $currentWeek,
   $failConnect,
   $failConnectInfo,
   $inputValue,
   $isInputValueEmpty,
   $isLoading,
   $isScheduleDataLoading,
-  $scheduleData,
   $successConnectInfo,
   searchInputHandlerEvent,
   setInputValueHandler,
@@ -37,7 +37,7 @@ export const ShedulePage = () => {
     isInputValueEmpty,
     searchInputHandler,
     isScheduleDataLoading,
-    // scheduleData,
+    currentWeek,
   ] = useUnit([
     $isLoading,
     $failConnect,
@@ -48,8 +48,9 @@ export const ShedulePage = () => {
     $isInputValueEmpty,
     searchInputHandlerEvent,
     $isScheduleDataLoading,
-    $scheduleData,
+    $currentWeek,
   ])
+
   const { SnackBar, handleShowSnackBar } = useSnackBar({
     message: failConnectInfo || successConnectInfo,
   })
@@ -97,7 +98,7 @@ export const ShedulePage = () => {
       <ShedulePageHeader />
       <ShedulePageMain>
         <div className={styles.titleAndWeekShow}>
-          <TitleAndWeekShow groupName="ПИ2002" weekNumber={0} />
+          <TitleAndWeekShow groupName="ПИ2002" weekNumber={currentWeek} />
         </div>
         <div className={styles.updateDateBlock}>
           <DateUpdateShow

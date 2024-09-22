@@ -5,25 +5,37 @@ import classNames from 'classnames'
 import dayjs from 'dayjs'
 import { getWeekDays } from '@shared/utils'
 
-export const Pagination: FC<PaginationProps> = (props) => {
-  const [currentWeek, setCurrentWeek] = useState<number>(0)
+interface IPagination extends PaginationProps {
+  // eslint-disable-next-line
+  onDayChange?: (weekNumber: number, dayOfWeekNum: number) => void
+}
+
+export const Pagination: FC<IPagination> = (props) => {
+  const currentWeekday = dayjs().isoWeekday() > 6 ? 1 : dayjs().isoWeekday() // Если сегодня воскресенье, вернем понедельник для отображения следующей недели, иначе текущий день
+  const currentWeekCalc = dayjs().isoWeekday() > 6 ? 1 : 0 // Если сегодня воскресенье, вернем следующую неделю (0), иначе текущую
+
+  const [currentWeek, setCurrentWeek] = useState<number>(currentWeekCalc) //Стейт для переключателя карусели пагинации недель (на текущую/следующую)
 
   const weekDays = useMemo(() => getWeekDays(currentWeek), [currentWeek]) //функция получения недель с наборами данных
-  const currentWeekday =
-    dayjs().isoWeekday() > 6 ? dayjs().isoWeekday() - 1 : dayjs().isoWeekday() //текущий номер дня недели
 
   const [currentDay, setCurrentDay] = useState<number>(currentWeekday) //стейт для управляемого контрола текущего дня в Pagination
   const [сurrentChosenDay, setCurrentChosenDay] = useState<number>(null) //стейт для управляемого контрола выбранного дня в Pagination
 
   const handlePrev = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation()
-    setCurrentWeek((prev) => prev - 1)
-    setCurrentDay((prev) => prev)
+    if (currentWeek > 0) {
+      setCurrentChosenDay(null)
+      setCurrentWeek((prev) => prev - 1)
+      setCurrentDay((prev) => prev)
+    }
   }
 
   const handleNext = (e: React.MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation()
-    setCurrentWeek((next) => next + 1)
+    if (currentWeek < 1) {
+      setCurrentChosenDay(null)
+      setCurrentWeek((next) => next + 1)
+    }
   }
 
   const handleCurrent = (
@@ -32,6 +44,15 @@ export const Pagination: FC<PaginationProps> = (props) => {
   ) => {
     e.stopPropagation()
     setCurrentChosenDay(dayOfWeekNum)
+    // Возвращаем текущий день и номер недели через пропс onDayChange
+    if (props.onDayChange) {
+      const currentDayValue = weekDays.find(
+        (day) => day.day_of_week_num === dayOfWeekNum
+      )
+      if (currentDayValue) {
+        props.onDayChange(currentWeek, dayOfWeekNum)
+      }
+    }
   }
 
   const itemRender: PaginationProps['itemRender'] = useCallback(
@@ -52,7 +73,9 @@ export const Pagination: FC<PaginationProps> = (props) => {
             {
               activeChosen:
                 сurrentChosenDay === currentDayValue.day_of_week_num,
-              active: currentDay === currentDayValue.day_of_week_num,
+              active:
+                currentDay === currentDayValue.day_of_week_num &&
+                currentWeek === currentWeekCalc,
             },
           ])}
           onClick={(e) => handleCurrent(e, currentDayValue.day_of_week_num)}

@@ -8,6 +8,7 @@ import {
 import { or, pending } from 'patronum'
 import { AxiosError } from 'axios'
 import { createGate } from 'effector-react'
+import { getCurrentWeek } from '@shared/utils'
 import { REQUEST_STATUSES } from '@shared/constants'
 
 //Gate---------------------------------------------------------------------------
@@ -22,6 +23,7 @@ export const getScheduleAudienceFx = createEffect(getScheduleAudience)
 //events---------------------------------------------------------------------------
 export const setInputValueHandler = createEvent<string>()
 export const searchInputHandlerEvent = createEvent<void>()
+export const getCurrentWeekEvent = createEvent<number>()
 
 //stores---------------------------------------------------------------------------
 export const $failConnect = createStore<boolean>(false)
@@ -67,6 +69,11 @@ export const $scheduleData = createStore(null)
     getScheduleGroupFx.failData,
     getScheduleAudienceFx.failData,
   ])
+
+export const $currentWeek = createStore<number>(getCurrentWeek()).on(
+  getCurrentWeekEvent,
+  (_, payload) => payload
+)
 
 //samples---------------------------------------------------------------------------
 // Для проверки работоспособности api

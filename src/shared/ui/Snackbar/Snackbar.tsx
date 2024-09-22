@@ -8,7 +8,7 @@ function SlideTransition(props: SlideProps) {
 
 export const SnackBar: FC<SnackbarProps> = ({
   open = false,
-  message = 'Сообщение не найдено',
+  message = 'Некорректные данные',
   autoHideDuration = 1500,
   anchorOrigin = { vertical: 'bottom', horizontal: 'right' },
   onClick = null,

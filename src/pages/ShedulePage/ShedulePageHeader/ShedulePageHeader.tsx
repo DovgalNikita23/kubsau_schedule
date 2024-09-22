@@ -1,7 +1,9 @@
 import Calendar from '@app/assets/svg/Calendar.svg'
 import { FC } from 'react'
+import { getCurrentWeekEvent } from '../config'
 import { Pagination } from '@shared/ui'
 import styles from '../shedulePage.module.scss'
+import { useUnit } from 'effector-react'
 import UStudentLogo from '@app/assets/svg/UStudentLogo.svg'
 
 interface IShedulePageHeader {
@@ -9,6 +11,12 @@ interface IShedulePageHeader {
 }
 
 export const ShedulePageHeader: FC<IShedulePageHeader> = ({ children }) => {
+  const [getCurrentWeek] = useUnit([getCurrentWeekEvent])
+
+  const handleChangeDay = (weekNumber: number) => {
+    getCurrentWeek(weekNumber)
+  }
+
   return (
     <header className={styles.shedulePageHeader}>
       <div className={styles.headerBlock}>
@@ -25,7 +33,7 @@ export const ShedulePageHeader: FC<IShedulePageHeader> = ({ children }) => {
         </div>
       </div>
       <div className={styles.carousel}>
-        <Pagination total={60} />
+        <Pagination total={60} onDayChange={handleChangeDay} />
       </div>
       {children}
     </header>
