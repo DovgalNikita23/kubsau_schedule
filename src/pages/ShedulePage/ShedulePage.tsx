@@ -12,7 +12,13 @@ import {
   ShedulePageGate,
 } from './config'
 import { ChangeEvent, useEffect } from 'react'
-import { IconButton, Input, TextButton, useSnackBar } from '@shared/ui'
+import {
+  IconButton,
+  Input,
+  Schedule,
+  TextButton,
+  useSnackBar,
+} from '@shared/ui'
 import { useGate, useUnit } from 'effector-react'
 import colors from '@app/assets/variables/_colors.module.scss'
 import { DateUpdateShow } from '@features/DateUpdateShow'
@@ -118,7 +124,7 @@ export const ShedulePage = () => {
           </IconButton>
         </div>
         <div className={styles.scheduleBlock}>
-          {isScheduleDataLoading && <FullScreenLoader />}
+          {isScheduleDataLoading ? <FullScreenLoader /> : <Schedule />}
         </div>
         <div className={styles.fullScheduleButton}>
           <TextButton

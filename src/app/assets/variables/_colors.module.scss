@@ -9,6 +9,11 @@ $OnPrimary: #f1efef;
 $OutlinedButtonText: #7d7d7d;
 $OutlinedButtonBackground: #ffffff;
 $OutlinedButtonBorder: rgba(200, 200, 200, 0.5);
+$Crimson: #c64141;
+$SkyBlue: #2eb4ff;
+$DevidedGray: #b1b1b1;
+$IsLecture: #efeff0;
+$isNotLecture: #ffe4b5;
 
 :export {
   OutlinedButtonContentColor: $OutlinedButtonContentColor;
@@ -22,4 +27,9 @@ $OutlinedButtonBorder: rgba(200, 200, 200, 0.5);
   OutlinedButtonText: $OutlinedButtonText;
   OutlinedButtonBackground: $OutlinedButtonBackground;
   OutlinedButtonBorder: $OutlinedButtonBorder;
+  Crimson: $Crimson;
+  SkyBlue: $SkyBlue;
+  DevidedGray: $DevidedGray;
+  IsLecture: $IsLecture;
+  isNotLecture: $isNotLecture;
 }
