@@ -43,7 +43,7 @@
     .scheduleItem {
       @include flexRow;
       width: 100%;
-      min-height: 70px;
+      min-height: 80px;
       border-bottom: 1px solid $DevidedGray;
 
       @media (max-width: $small) {
