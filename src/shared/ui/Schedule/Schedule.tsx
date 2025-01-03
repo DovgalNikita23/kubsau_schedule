@@ -9,8 +9,8 @@ export const Schedule = () => {
         <div className={styles.caption}>Сегодня | 5 апреля</div>
       </div>
       <div className={styles.content}>
-        {lessonsTime.map((data) => (
-          <ScheduleItem lessonsTimeData={data} />
+        {lessonsTime.map((data, index) => (
+          <ScheduleItem key={index} lessonsTimeData={data} />
         ))}
       </div>
     </div>
