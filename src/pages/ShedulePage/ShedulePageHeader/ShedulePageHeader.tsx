@@ -1,7 +1,9 @@
-import Calendar from '@app/assets/svg/Calendar.svg'
-import { FC } from 'react'
+import { FC, useCallback, useMemo } from 'react'
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import { getCurrentWeekEvent } from '../config'
+import { IconButton } from '@mui/material'
 import { Pagination } from '@shared/ui'
+import { Popover } from 'antd'
 import styles from '../shedulePage.module.scss'
 import { useUnit } from 'effector-react'
 import UStudentLogo from '@app/assets/svg/UStudentLogo.svg'
@@ -13,9 +15,20 @@ interface IShedulePageHeader {
 export const ShedulePageHeader: FC<IShedulePageHeader> = ({ children }) => {
   const [getCurrentWeek] = useUnit([getCurrentWeekEvent])
 
-  const handleChangeDay = (weekNumber: number) => {
-    getCurrentWeek(weekNumber)
-  }
+  const handleChangeDay = useCallback(
+    (weekNumber: number) => {
+      getCurrentWeek(weekNumber)
+    },
+    [getCurrentWeek]
+  )
+
+  const popoverTitle = useMemo(() => {
+    return 'Выбор в календаре'
+  }, [])
+
+  const popoverContent = useMemo(() => {
+    return 'Данная функция находится в стадии разработки'
+  }, [])
 
   return (
     <header className={styles.shedulePageHeader}>
@@ -28,7 +41,20 @@ export const ShedulePageHeader: FC<IShedulePageHeader> = ({ children }) => {
         <div className={styles.title}>Расписание</div>
         <div className={styles.datePickerBlock}>
           <div className={styles.datePicker}>
-            <Calendar width="100%" height="100%" />
+            <IconButton>
+              <Popover
+                placement="leftTop"
+                title={popoverTitle}
+                content={popoverContent}
+                arrow={true}
+                trigger="click"
+              >
+                <CalendarMonthIcon
+                  className={styles.datePickerIcon}
+                  sx={{ color: 'black' }}
+                />
+              </Popover>
+            </IconButton>
           </div>
         </div>
       </div>

@@ -55,17 +55,14 @@
       }
 
       .datePickerBlock {
-        @include flexRow_CC;
-        height: 50px;
-        margin-right: 20px;
+        margin-top: 5px;
+        margin-right: 15px;
 
-        .datePicker {
-          width: 35px;
-          height: 35px;
+        .datePickerIcon {
+          font-size: 30px;
 
           @media (max-width: $small) {
-            width: 25px;
-            height: 25px;
+            font-size: 25px;
           }
         }
       }
