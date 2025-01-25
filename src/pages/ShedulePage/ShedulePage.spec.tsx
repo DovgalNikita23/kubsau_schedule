@@ -2,14 +2,10 @@ import '@testing-library/jest-dom'
 // import { render } from '@testing-library/react'
 // import { ShedulePage } from './ShedulePage'
 
-describe('MainPage', () => {
+describe('ShedulePage', () => {
   it('ContentExists', () => {
-    // const { container } = render(<ShedulePage />)
-
+    // const { container, unmount } = render(<ShedulePage />)
     // expect(container).toBeInTheDocument()
-
-    const a = 5
-
-    expect(a).toBe(5)
+    // unmount()
   })
 })
