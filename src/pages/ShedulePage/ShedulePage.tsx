@@ -104,11 +104,11 @@ export const ShedulePage = () => {
       <ShedulePageHeader />
       <ShedulePageMain>
         <div className={styles.titleAndWeekShow}>
-          <TitleAndWeekShow groupName="ПИ2002" weekNumber={currentWeek} />
+          <TitleAndWeekShow groupName="ПИ2441" weekNumber={currentWeek} />
         </div>
         <div className={styles.updateDateBlock}>
           <DateUpdateShow
-            date="2024-09-08T09:00:16.498Z"
+            date="2025-09-29T09:00:16.498Z"
             formatPattern="YYYY-MM-DD"
           />
         </div>
