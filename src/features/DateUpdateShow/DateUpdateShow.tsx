@@ -1,5 +1,5 @@
-import { FC } from 'react'
 import { getFormatDate } from '@shared/utils'
+import { ReactElement } from 'react'
 import styles from './dateUpdateShow.module.scss'
 
 interface IDateUpdateShow {
@@ -7,10 +7,15 @@ interface IDateUpdateShow {
   formatPattern: string
 }
 
-export const DateUpdateShow: FC<IDateUpdateShow> = ({
+/**
+ * Фича, отображающая дату обновления данных расписания
+ * @param {IDateUpdateShow}
+ * @returns {ReactElement}
+ */
+export const DateUpdateShow = ({
   date,
   formatPattern,
-}) => {
+}: IDateUpdateShow): ReactElement => {
   return (
     <div
       className={styles.dateUpdateShow}

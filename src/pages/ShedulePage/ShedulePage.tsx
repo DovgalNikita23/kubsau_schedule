@@ -6,24 +6,19 @@ import {
   $isInputValueEmpty,
   $isLoading,
   $isScheduleDataLoading,
+  $scheduleData,
   $successConnectInfo,
   searchInputHandlerEvent,
   setInputValueHandler,
   ShedulePageGate,
 } from './config'
-import { ChangeEvent, useEffect } from 'react'
-import {
-  IconButton,
-  Input,
-  Schedule,
-  TextButton,
-  useSnackBar,
-} from '@shared/ui'
+import { ChangeEvent, useCallback, useEffect } from 'react'
+import { IconButton, Input, ScheduleTable, useSnackBar } from '@shared/ui'
 import { useGate, useUnit } from 'effector-react'
 import colors from '@app/assets/variables/_colors.module.scss'
 import { DateUpdateShow } from '@features/DateUpdateShow'
+import { FullScheduleButton } from '@shared/ui'
 import { FullScreenLoader } from '@features/FullScreenLoader'
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
 import SearchIcon from '@mui/icons-material/Search'
 import { ShedulePageHeader } from './ShedulePageHeader'
 import { ShedulePageMain } from './ShedulePageMain'
@@ -44,6 +39,7 @@ export const ShedulePage = () => {
     searchInputHandler,
     isScheduleDataLoading,
     currentWeek,
+    // scheduleData,
   ] = useUnit([
     $isLoading,
     $failConnect,
@@ -55,6 +51,7 @@ export const ShedulePage = () => {
     searchInputHandlerEvent,
     $isScheduleDataLoading,
     $currentWeek,
+    $scheduleData,
   ])
 
   const { SnackBar, handleShowSnackBar } = useSnackBar({
@@ -65,13 +62,13 @@ export const ShedulePage = () => {
     setInputValue(e.currentTarget.value)
   }
 
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     if (isInputValueEmpty) {
       handleShowSnackBar('Введите группу, преподавателя или аудиторию')
     } else {
       searchInputHandler()
     }
-  }
+  }, [handleShowSnackBar])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -124,13 +121,10 @@ export const ShedulePage = () => {
           </IconButton>
         </div>
         <div className={styles.scheduleBlock}>
-          {isScheduleDataLoading ? <FullScreenLoader /> : <Schedule />}
+          {isScheduleDataLoading ? <FullScreenLoader /> : <ScheduleTable />}
         </div>
         <div className={styles.fullScheduleButton}>
-          <TextButton
-            caption="Полное расписание"
-            endIcon={<KeyboardArrowRightIcon />}
-          />
+          <FullScheduleButton />
         </div>
       </ShedulePageMain>
       {successConnectInfo && SnackBar}

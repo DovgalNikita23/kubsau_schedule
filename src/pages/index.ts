@@ -1,1 +1,1 @@
-export { ShedulePage } from './ShedulePage'
+export * from './ShedulePage'

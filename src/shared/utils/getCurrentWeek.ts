@@ -5,10 +5,10 @@ dayjs.extend(customParseFormat)
 
 /**
  * @funcion Функция получения номера текущей недели - 0/1
- * @param currentWeek
- * @returns
+ * @param {number} currentWeek
+ * @returns {number}
  */
-export const getCurrentWeek = (currentWeek: number = 0) => {
+export const getCurrentWeek = (currentWeek: number = 0): number => {
   const getStartOfYear = () => {
     const currentYear = dayjs().year()
     return dayjs(`01-09-${currentYear}`, 'DD-MM-YYYY')

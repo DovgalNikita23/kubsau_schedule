@@ -2,7 +2,7 @@
 @import '@app/assets/variables/mixins.module';
 @import '@app/assets/variables/media.module';
 
-.Schedule {
+.schedule {
   @include flexCol;
   width: 100%;
   height: fit-content;

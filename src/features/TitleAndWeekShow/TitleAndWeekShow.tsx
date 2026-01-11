@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react'
+import { ReactElement, useMemo } from 'react'
 import styles from './titleAndWeekShow.module.scss'
 
 interface ITitleAndWeekShow {
@@ -6,20 +6,28 @@ interface ITitleAndWeekShow {
   weekNumber: number
 }
 
-export const TitleAndWeekShow: FC<ITitleAndWeekShow> = ({
+export const TitleAndWeekShow = ({
   groupName,
   weekNumber,
-}) => {
-  const weekName =
-    useMemo(
-      () => (weekNumber === 0 ? 'Первая неделя' : 'Вторая неделя'),
-      [weekNumber]
-    ) || ''
+}: ITitleAndWeekShow): ReactElement | null => {
+  const weekName = useMemo(
+    () => (weekNumber === 0 ? 'Первая неделя' : 'Вторая неделя'),
+    [weekNumber]
+  )
+
+  if (!(weekName && groupName)) {
+    // если нет данных о номере недели и о группе
+    return null
+  }
 
   return (
     <div className={styles.TitleAndWeekShow}>
-      <div className={styles.groupName}>{groupName}</div>
-      <div className={styles.devider}></div>
+      {groupName && (
+        <>
+          <div className={styles.groupName}>{groupName}</div>
+          <div className={styles.devider}></div>
+        </>
+      )}
       <div className={styles.weekNumber}>{weekName}</div>
     </div>
   )

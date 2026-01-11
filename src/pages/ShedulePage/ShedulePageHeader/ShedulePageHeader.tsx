@@ -2,8 +2,10 @@ import { FC, useCallback, useMemo } from 'react'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import { getCurrentWeekEvent } from '../config'
 import { IconButton } from '@mui/material'
+import { Link } from 'react-router-dom'
 import { Pagination } from '@shared/ui'
 import { Popover } from 'antd'
+import { ROUTE_PATHS } from '@shared/constants'
 import styles from '../shedulePage.module.scss'
 import { useUnit } from 'effector-react'
 import UStudentLogo from '@app/assets/svg/UStudentLogo.svg'
@@ -35,7 +37,10 @@ export const ShedulePageHeader: FC<IShedulePageHeader> = ({ children }) => {
       <div className={styles.headerBlock}>
         <div className={styles.logoBlock}>
           <div className={styles.logo}>
-            <UStudentLogo width="100%" height="100%" />
+            <Link
+              to={ROUTE_PATHS.index}
+              children={<UStudentLogo width="100%" height="100%" />}
+            />
           </div>
         </div>
         <div className={styles.title}>Расписание</div>
