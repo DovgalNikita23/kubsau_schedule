@@ -1,7 +1,7 @@
 import './Input.module.scss'
-import { StandardTextFieldProps, TextField } from '@mui/material'
 import { FC } from 'react'
 import styles from '@app/assets/variables/_colors.module.scss'
+import { StandardTextFieldProps, TextField } from '@mui/material'
 
 interface IInput extends StandardTextFieldProps {
   width?: string

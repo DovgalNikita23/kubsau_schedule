@@ -1,7 +1,8 @@
-import { ILessonsData, lessonsData as MLD } from './config'
 import { ReactElement } from 'react'
-import { ScheduleItem } from './ScheduleItem'
+
 import styles from './schedule.module.scss'
+import { ScheduleItem } from './ScheduleItem'
+import { ILessonsData, lessonsData as MLD } from './config'
 
 interface IScheduleTable {
   /**

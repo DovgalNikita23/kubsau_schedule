@@ -1,6 +1,6 @@
-import { FullScheduleTablePage, ShedulePage } from '@pages/index'
-import { createBrowserRouter } from 'react-router-dom'
 import { ROUTE_PATHS } from '@shared/constants'
+import { createBrowserRouter } from 'react-router-dom'
+import { FullScheduleTablePage, ShedulePage } from '@pages/index'
 
 export const router = createBrowserRouter([
   {

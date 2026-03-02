@@ -1,9 +1,9 @@
 import './pagination.module.scss'
+import dayjs from 'dayjs'
+import classNames from 'classnames'
+import { getWeekDays } from '@shared/utils'
 import { FC, useCallback, useMemo, useState } from 'react'
 import { Pagination as PaginataionAntd, PaginationProps } from 'antd'
-import classNames from 'classnames'
-import dayjs from 'dayjs'
-import { getWeekDays } from '@shared/utils'
 
 interface IPagination extends PaginationProps {
   // eslint-disable-next-line

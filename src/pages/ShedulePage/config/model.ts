@@ -1,3 +1,8 @@
+import { AxiosError } from 'axios'
+import { or, pending } from 'patronum'
+import { createGate } from 'effector-react'
+import { getCurrentWeek } from '@shared/utils'
+import { REQUEST_STATUSES } from '@shared/constants'
 import { createEffect, createEvent, createStore, sample } from 'effector'
 import {
   getHealthCheck,
@@ -5,11 +10,6 @@ import {
   getScheduleGroup,
   getScheduleTeacher,
 } from '@shared/api/methods'
-import { or, pending } from 'patronum'
-import { AxiosError } from 'axios'
-import { createGate } from 'effector-react'
-import { getCurrentWeek } from '@shared/utils'
-import { REQUEST_STATUSES } from '@shared/constants'
 
 //Gate---------------------------------------------------------------------------
 export const ShedulePageGate = createGate('')

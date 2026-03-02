@@ -1,6 +1,6 @@
+import { FC } from 'react'
 import Slide, { SlideProps } from '@mui/material/Slide'
 import Snackbar, { SnackbarProps } from '@mui/material/Snackbar'
-import { FC } from 'react'
 
 function SlideTransition(props: SlideProps) {
   return <Slide {...props} direction="left" timeout={500} />

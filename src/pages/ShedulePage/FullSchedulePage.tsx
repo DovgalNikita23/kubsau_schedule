@@ -1,10 +1,11 @@
-import { DateUpdateShow } from '@features/DateUpdateShow'
 import { ReactElement } from 'react'
 import { ScheduleTable } from '@shared/ui'
-import { ShedulePageHeader } from './ShedulePageHeader'
-import { ShedulePageMain } from './ShedulePageMain'
-import styles from './shedulePage.module.scss'
+import { DateUpdateShow } from '@features/DateUpdateShow'
 import { TitleAndWeekShow } from '@features/TitleAndWeekShow'
+
+import styles from './shedulePage.module.scss'
+import { ShedulePageMain } from './ShedulePageMain'
+import { ShedulePageHeader } from './ShedulePageHeader'
 
 /**
  * Страница с полным расписанием

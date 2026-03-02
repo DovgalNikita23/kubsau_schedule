@@ -1,6 +1,6 @@
+import { FC } from 'react'
 import { Button, ButtonProps } from '@mui/material'
 import colors from '@app/assets/variables/_colors.module.scss'
-import { FC } from 'react'
 
 interface ITextButton extends ButtonProps {
   caption: React.ReactNode

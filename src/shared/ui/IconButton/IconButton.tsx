@@ -1,7 +1,7 @@
 import './iconButton.module.scss'
-import IconButtonMui, { IconButtonProps } from '@mui/material/IconButton'
-import colors from '@app/assets/variables/_colors.module.scss'
 import { FC } from 'react'
+import colors from '@app/assets/variables/_colors.module.scss'
+import IconButtonMui, { IconButtonProps } from '@mui/material/IconButton'
 
 interface IIconButtonProps extends IconButtonProps {
   children: React.ReactNode

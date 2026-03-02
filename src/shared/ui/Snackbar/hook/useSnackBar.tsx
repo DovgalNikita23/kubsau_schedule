@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
-import { SnackBar as SnackBarComponent } from '../Snackbar'
 import { SnackbarProps } from '@mui/material'
+
+import { SnackBar as SnackBarComponent } from '../Snackbar'
 
 export const useSnackBar = ({
   message = 'Некорректные данные',
