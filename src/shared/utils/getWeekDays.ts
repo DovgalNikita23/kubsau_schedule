@@ -1,6 +1,9 @@
 import dayjs from 'dayjs'
-import { getCurrentWeek } from './getCurrentWeek'
+import i18n from 'i18next'
 import isoWeek from 'dayjs/plugin/isoWeek'
+import { WEEK_DAYS } from '@shared/constants'
+
+import { getCurrentWeek } from './getCurrentWeek'
 
 interface IGetWeekDays {
   id: number
@@ -13,7 +16,15 @@ interface IGetWeekDays {
 dayjs.extend(isoWeek)
 
 export const getWeekDays = (currentWeek = 0): IGetWeekDays[] => {
-  const daysOfWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
+  const daysOfWeek = [
+    i18n.t(WEEK_DAYS.Mo),
+    i18n.t(WEEK_DAYS.Tu),
+    i18n.t(WEEK_DAYS.We),
+    i18n.t(WEEK_DAYS.Th),
+    i18n.t(WEEK_DAYS.Fr),
+    i18n.t(WEEK_DAYS.Sa),
+    i18n.t(WEEK_DAYS.Su),
+  ]
 
   // Определяем, является ли сегодня воскресеньем
   const today = dayjs()

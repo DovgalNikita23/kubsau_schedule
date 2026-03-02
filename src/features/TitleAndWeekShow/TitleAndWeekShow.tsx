@@ -1,4 +1,6 @@
 import { ReactElement, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+
 import styles from './titleAndWeekShow.module.scss'
 
 interface ITitleAndWeekShow {
@@ -10,8 +12,10 @@ export const TitleAndWeekShow = ({
   groupName,
   weekNumber,
 }: ITitleAndWeekShow): ReactElement | null => {
+  const { t } = useTranslation()
+
   const weekName = useMemo(
-    () => (weekNumber === 0 ? 'Первая неделя' : 'Вторая неделя'),
+    () => (weekNumber === 0 ? t('Первая неделя') : t('Вторая неделя')),
     [weekNumber]
   )
 

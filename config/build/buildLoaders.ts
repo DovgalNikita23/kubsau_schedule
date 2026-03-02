@@ -1,11 +1,12 @@
-//@eslint-disable-next-line
-// import { buildBabelLoader } from './babel/buildBabelLoader'
-import { BuildOptions } from './types/types'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { ModuleOptions } from 'webpack'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 //@eslint-disable-next-line
 // import path from 'path'
 import ReactRefreshTypeScript from 'react-refresh-typescript'
+
+//@eslint-disable-next-line
+// import { buildBabelLoader } from './babel/buildBabelLoader'
+import { BuildOptions } from './types/types'
 
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
   // eslint-disable-next-line
@@ -75,11 +76,18 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
 
   // const babelLoader = buildBabelLoader(options)
 
+  const jsonLoader = {
+    test: /\.json$/,
+    type: 'javascript/auto',
+    use: 'json-loader',
+  }
+
   return [
     sassLoader,
     tsLoader,
     // babelLoader,
     assetsLoader,
     svgrLoader,
+    jsonLoader,
   ]
 }

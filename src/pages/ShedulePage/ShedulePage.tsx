@@ -1,3 +1,17 @@
+import { useTranslation } from 'react-i18next'
+import { FullScheduleButton } from '@shared/ui'
+import { useGate, useUnit } from 'effector-react'
+import SearchIcon from '@mui/icons-material/Search'
+import { DateUpdateShow } from '@features/DateUpdateShow'
+import { ChangeEvent, useCallback, useEffect } from 'react'
+import { FullScreenLoader } from '@features/FullScreenLoader'
+import { TitleAndWeekShow } from '@features/TitleAndWeekShow'
+import colors from '@app/assets/variables/_colors.module.scss'
+import { IconButton, Input, ScheduleTable, useSnackBar } from '@shared/ui'
+
+import styles from './shedulePage.module.scss'
+import { ShedulePageMain } from './ShedulePageMain'
+import { ShedulePageHeader } from './ShedulePageHeader'
 import {
   $currentWeek,
   $failConnect,
@@ -12,18 +26,6 @@ import {
   setInputValueHandler,
   ShedulePageGate,
 } from './config'
-import { ChangeEvent, useCallback, useEffect } from 'react'
-import { IconButton, Input, ScheduleTable, useSnackBar } from '@shared/ui'
-import { useGate, useUnit } from 'effector-react'
-import colors from '@app/assets/variables/_colors.module.scss'
-import { DateUpdateShow } from '@features/DateUpdateShow'
-import { FullScheduleButton } from '@shared/ui'
-import { FullScreenLoader } from '@features/FullScreenLoader'
-import SearchIcon from '@mui/icons-material/Search'
-import { ShedulePageHeader } from './ShedulePageHeader'
-import { ShedulePageMain } from './ShedulePageMain'
-import styles from './shedulePage.module.scss'
-import { TitleAndWeekShow } from '@features/TitleAndWeekShow'
 
 export const ShedulePage = () => {
   useGate(ShedulePageGate)
@@ -54,6 +56,8 @@ export const ShedulePage = () => {
     $scheduleData,
   ])
 
+  const { t } = useTranslation()
+
   const { SnackBar, handleShowSnackBar } = useSnackBar({
     message: failConnectInfo || successConnectInfo,
   })
@@ -64,7 +68,7 @@ export const ShedulePage = () => {
 
   const handleSearch = useCallback(() => {
     if (isInputValueEmpty) {
-      handleShowSnackBar('Введите группу, преподавателя или аудиторию')
+      handleShowSnackBar(t('Введите группу, преподавателя или аудиторию'))
     } else {
       searchInputHandler()
     }
@@ -111,7 +115,7 @@ export const ShedulePage = () => {
         </div>
         <div className={styles.inputBlock}>
           <Input
-            placeholder="Группа, преподаватель, аудитория"
+            placeholder={t('Группа, преподаватель, аудитория')}
             value={inputValue}
             onChange={handleInputValue}
             error={isInputValueEmpty}

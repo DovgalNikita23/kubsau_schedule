@@ -7,6 +7,7 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "outDir": "./build/",
     "noImplicitAny": true,
     "baseUrl": ".",
@@ -15,7 +16,8 @@
       "@pages/*": ["./src/pages/*"],
       "@shared/*": ["./src/shared/*"],
       "@features/*": ["./src/features/*"],
-      "@widgets/*": ["./src/widgets/*"]
+      "@widgets/*": ["./src/widgets/*"],
+      "@locales/*": ["./public/locales/*"]
     }
   },
   "include": ["src/**/*", "tests/**/*", "declare.d.ts"],

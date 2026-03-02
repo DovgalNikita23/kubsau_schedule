@@ -1,6 +1,7 @@
 import './index.module.scss'
-import { createRoot } from 'react-dom/client'
+import './i18n'
 import { router } from '@app/router'
+import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 
 const domNode = document.getElementById('root')

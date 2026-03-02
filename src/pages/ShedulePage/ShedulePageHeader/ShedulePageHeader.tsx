@@ -1,20 +1,24 @@
-import { FC, useCallback, useMemo } from 'react'
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
-import { getCurrentWeekEvent } from '../config'
-import { IconButton } from '@mui/material'
+import { Popover } from 'antd'
 import { Link } from 'react-router-dom'
 import { Pagination } from '@shared/ui'
-import { Popover } from 'antd'
-import { ROUTE_PATHS } from '@shared/constants'
-import styles from '../shedulePage.module.scss'
 import { useUnit } from 'effector-react'
+import { IconButton } from '@mui/material'
+import { useTranslation } from 'react-i18next'
+import { ROUTE_PATHS } from '@shared/constants'
+import { FC, useCallback, useMemo } from 'react'
 import UStudentLogo from '@app/assets/svg/UStudentLogo.svg'
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
+
+import styles from '../shedulePage.module.scss'
+import { getCurrentWeekEvent } from '../config'
 
 interface IShedulePageHeader {
   children?: React.ReactNode
 }
 
 export const ShedulePageHeader: FC<IShedulePageHeader> = ({ children }) => {
+  const { t } = useTranslation()
+
   const [getCurrentWeek] = useUnit([getCurrentWeekEvent])
 
   const handleChangeDay = useCallback(
@@ -43,7 +47,7 @@ export const ShedulePageHeader: FC<IShedulePageHeader> = ({ children }) => {
             />
           </div>
         </div>
-        <div className={styles.title}>Расписание</div>
+        <div className={styles.title}>{t('Расписание')}</div>
         <div className={styles.datePickerBlock}>
           <div className={styles.datePicker}>
             <IconButton>
