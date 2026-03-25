@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { ReactElement } from 'react'
 import { Button, ButtonProps } from '@mui/material'
 import colors from '@app/assets/variables/_colors.module.scss'
 
@@ -11,7 +11,12 @@ interface ITextButton extends ButtonProps {
   backgroundColor?: string
 }
 
-export const TextButton: FC<ITextButton> = ({
+/**
+ * Кнопка
+ * @param {ITextButton} [props]
+ * @returns {ReactElement}
+ */
+export const TextButton = ({
   caption,
   textColor = colors.OutlinedButtonText,
   width = '100%',
@@ -19,7 +24,7 @@ export const TextButton: FC<ITextButton> = ({
   borderColor = colors.OutlinedButtonBorder,
   backgroundColor = colors.OutlinedButtonBackground,
   ...props
-}) => {
+}: ITextButton): ReactElement => {
   return (
     <Button
       sx={{

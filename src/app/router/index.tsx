@@ -2,6 +2,10 @@ import { ROUTE_PATHS } from '@shared/constants'
 import { createBrowserRouter } from 'react-router-dom'
 import { FullScheduleTablePage, ShedulePage } from '@pages/index'
 
+/**
+ * Конфигурация роутера
+ * @public
+ */
 export const router = createBrowserRouter([
   {
     path: ROUTE_PATHS.index,

@@ -15,7 +15,12 @@ interface IGetWeekDays {
 
 dayjs.extend(isoWeek)
 
-export const getWeekDays = (currentWeek = 0): IGetWeekDays[] => {
+/**
+ * @funcion Функция получения дней недели
+ * @param {number} currentWeek
+ * @returns {IGetWeekDays[]}
+ */
+export const getWeekDays = (currentWeek: number = 0): IGetWeekDays[] => {
   const daysOfWeek = [
     i18n.t(WEEK_DAYS.Mo),
     i18n.t(WEEK_DAYS.Tu),

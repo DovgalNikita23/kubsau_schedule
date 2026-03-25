@@ -1,7 +1,12 @@
 import { Box } from '@mui/material'
 import { Loader } from '@shared/ui'
+import { ReactElement } from 'react'
 
-export const FullScreenLoader = () => {
+/**
+ * Фича, отображающая лоадер загрузки
+ * @returns {ReactElement}
+ */
+export const FullScreenLoader = (): ReactElement => {
   return (
     <Box
       display="flex"

@@ -2,7 +2,7 @@ import './pagination.module.scss'
 import dayjs from 'dayjs'
 import classNames from 'classnames'
 import { getWeekDays } from '@shared/utils'
-import { FC, useCallback, useMemo, useState } from 'react'
+import { ReactElement, useCallback, useMemo, useState } from 'react'
 import { Pagination as PaginataionAntd, PaginationProps } from 'antd'
 
 interface IPagination extends PaginationProps {
@@ -10,7 +10,12 @@ interface IPagination extends PaginationProps {
   onDayChange?: (weekNumber: number, dayOfWeekNum: number) => void
 }
 
-export const Pagination: FC<IPagination> = (props) => {
+/**
+ * Компонент с пагинацией
+ * @param {IPagination} props
+ * @returns {ReactElement}
+ */
+export const Pagination = (props: IPagination): ReactElement => {
   const currentWeekday = dayjs().isoWeekday() > 6 ? 1 : dayjs().isoWeekday() // Если сегодня воскресенье, вернем понедельник для отображения следующей недели, иначе текущий день
   const currentWeekCalc = dayjs().isoWeekday() > 6 ? 1 : 0 // Если сегодня воскресенье, вернем следующую неделю (0), иначе текущую
 

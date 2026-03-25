@@ -5,7 +5,7 @@ import { useUnit } from 'effector-react'
 import { IconButton } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { ROUTE_PATHS } from '@shared/constants'
-import { FC, useCallback, useMemo } from 'react'
+import { ReactElement, useCallback, useMemo } from 'react'
 import UStudentLogo from '@app/assets/svg/UStudentLogo.svg'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 
@@ -16,11 +16,21 @@ interface IShedulePageHeader {
   children?: React.ReactNode
 }
 
-export const ShedulePageHeader: FC<IShedulePageHeader> = ({ children }) => {
+/**
+ * Шапка страницы с расписанием
+ * @param {IShedulePageHeader} [props]
+ * @returns {ReactElement}
+ */
+export const ShedulePageHeader = ({
+  children,
+}: IShedulePageHeader): ReactElement => {
   const { t } = useTranslation()
 
   const [getCurrentWeek] = useUnit([getCurrentWeekEvent])
 
+  /**
+   * Обработчик клика по "календарю"
+   */
   const handleChangeDay = useCallback(
     (weekNumber: number) => {
       getCurrentWeek(weekNumber)
@@ -28,10 +38,16 @@ export const ShedulePageHeader: FC<IShedulePageHeader> = ({ children }) => {
     [getCurrentWeek]
   )
 
+  /**
+   * Всплывающая подсказка
+   */
   const popoverTitle = useMemo(() => {
     return 'Выбор в календаре'
   }, [])
 
+  /**
+   * Контент всплывающей подсказки
+   */
   const popoverContent = useMemo(() => {
     return 'Данная функция находится в стадии разработки'
   }, [])

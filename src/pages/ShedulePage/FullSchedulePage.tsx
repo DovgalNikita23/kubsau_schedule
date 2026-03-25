@@ -8,7 +8,7 @@ import { ShedulePageMain } from './ShedulePageMain'
 import { ShedulePageHeader } from './ShedulePageHeader'
 
 /**
- * Страница с полным расписанием
+ * Страница с полным расписанием (лист)
  * @returns {ReactElement}
  */
 export const FullScheduleTablePage = (): ReactElement => {

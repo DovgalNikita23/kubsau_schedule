@@ -8,6 +8,11 @@ interface ITitleAndWeekShow {
   weekNumber: number
 }
 
+/**
+ * Фича, отображающая информацию о группе и номере недели
+ * @param {ITitleAndWeekShow} [props]
+ * @returns {ReactElement | null}
+ */
 export const TitleAndWeekShow = ({
   groupName,
   weekNumber,

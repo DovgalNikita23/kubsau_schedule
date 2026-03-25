@@ -3,10 +3,10 @@ import { FullScheduleButton } from '@shared/ui'
 import { useGate, useUnit } from 'effector-react'
 import SearchIcon from '@mui/icons-material/Search'
 import { DateUpdateShow } from '@features/DateUpdateShow'
-import { ChangeEvent, useCallback, useEffect } from 'react'
 import { FullScreenLoader } from '@features/FullScreenLoader'
 import { TitleAndWeekShow } from '@features/TitleAndWeekShow'
 import colors from '@app/assets/variables/_colors.module.scss'
+import { ChangeEvent, ReactElement, useCallback, useEffect } from 'react'
 import { IconButton, Input, ScheduleTable, useSnackBar } from '@shared/ui'
 
 import styles from './shedulePage.module.scss'
@@ -27,7 +27,11 @@ import {
   ShedulePageGate,
 } from './config'
 
-export const ShedulePage = () => {
+/**
+ * Корневой компонент страницы с расписанием
+ * @returns {ReactElement}
+ */
+export const ShedulePage = (): ReactElement => {
   useGate(ShedulePageGate)
 
   const [

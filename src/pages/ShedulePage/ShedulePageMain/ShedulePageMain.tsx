@@ -1,11 +1,18 @@
-import { FC } from 'react'
+import { FC, ReactElement } from 'react'
 
 import styles from '../shedulePage.module.scss'
 
-interface ShedulePageMain {
+interface IShedulePageMain {
   children?: React.ReactNode
 }
 
-export const ShedulePageMain: FC<ShedulePageMain> = ({ children }) => {
+/**
+ * Фича, отображающая информацию о группе и номере недели
+ * @param {IShedulePageHeader} [props]
+ * @returns {ReactElement}
+ */
+export const ShedulePageMain: FC<IShedulePageMain> = ({
+  children,
+}): ReactElement => {
   return <main className={styles.shedulePageMain}>{children}</main>
 }

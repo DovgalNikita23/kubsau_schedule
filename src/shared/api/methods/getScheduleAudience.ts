@@ -1,7 +1,14 @@
 import { API } from '../axios'
 import { API_PATHS } from '../api_paths'
 
-export const getScheduleAudience = async (audienceName: string) => {
+/**
+ * Ручка, запрашивающая данные с расписанием по аудитории
+ * @param {string} audienceName
+ * @returns {Promise<object>}
+ */
+export const getScheduleAudience = async (
+  audienceName: string
+): Promise<object> => {
   const response = await API.get(
     `${API_PATHS.schedule.audience}/${audienceName}`
   )
