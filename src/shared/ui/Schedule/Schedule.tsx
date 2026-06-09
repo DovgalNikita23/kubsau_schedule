@@ -1,14 +1,14 @@
-import { ReactElement } from 'react'
+import { IBaseApiResult } from '@shared/api'
+import { ReactElement, useMemo } from 'react'
+import { getFormatDate, getRelativeDateText } from '@shared/utils'
 
+import { LESSONS } from './lib/Constants'
 import styles from './schedule.module.scss'
 import { ScheduleItem } from './ScheduleItem'
-import { ILessonsData, lessonsData as MLD } from './config'
+import { getGroupByDateSchedule, getScheduleTemplate } from './lib/Helpers'
 
-interface IScheduleTable {
-  /**
-   * Данные по текущему дню
-   */
-  scheduleData?: ILessonsData[]
+interface ISchedule extends IScheduleTable {
+  currentWeekDay?: LESSONS
   /**
    * Признак, что отображаем единственную таблицу с текущим днем
    */
@@ -18,23 +18,54 @@ interface IScheduleTable {
 /**
  * Компонент отображения расписания в виде набора таблиц
  * @param {IScheduleTable} [props]
- * @returns {ReactElement}
+ * @returns {ReactElement | null}
  * @remark возможно отображение расписания только для текущего дня
  */
-export function ScheduleTable({
-  scheduleData,
+export function Schedule({
+  scheduleData: scheduleDataUnserialized = [],
+  currentWeekDay,
   isSingle = false,
-}: IScheduleTable): ReactElement {
-  if (isSingle) {
-    // если необходимо отобразить расписание только по текущему дню
-    return <Schedule lessonsData={scheduleData} />
+}: ISchedule): ReactElement | null {
+  const groupedSchedule = useMemo(() => {
+    if (!scheduleDataUnserialized.length) {
+      return []
+    }
+
+    // получаем сгруппированные по дням недели предметы
+    return getGroupByDateSchedule(scheduleDataUnserialized)
+  }, [scheduleDataUnserialized])
+
+  /**
+   * Данные по текущему дню недели
+   */
+  const dayScheduleData = useMemo(() => {
+    if (!(isSingle && currentWeekDay)) {
+      return []
+    }
+
+    return groupedSchedule[currentWeekDay]
+  }, [isSingle, currentWeekDay, groupedSchedule])
+
+  if (!scheduleDataUnserialized.length) {
+    return null
   }
 
-  return <Schedule lessonsData={scheduleData} />
+  if (isSingle) {
+    // если необходимо отобразить расписание только по текущему дню
+    return <ScheduleTable scheduleData={dayScheduleData} />
+  }
+
+  return (
+    <>
+      {Object.entries(groupedSchedule).map(([lessonId, scheduleData]) => (
+        <ScheduleTable key={lessonId} scheduleData={scheduleData} />
+      ))}
+    </>
+  )
 }
 
-interface ISchedule {
-  lessonsData: ILessonsData[]
+interface IScheduleTable {
+  scheduleData: IBaseApiResult[]
 }
 
 /**
@@ -42,16 +73,59 @@ interface ISchedule {
  * @param {ISchedule} [props]
  * @returns {ReactElement}
  */
-function Schedule({ lessonsData = MLD }: ISchedule): ReactElement {
+function ScheduleTable({ scheduleData = [] }: IScheduleTable): ReactElement {
+  const scheduleTemplate = useMemo(() => getScheduleTemplate(), [])
+  const scheduleDate = scheduleData.at(0)?.date
+
+  /**
+   * Текущая дата расписания в формате D MMMM
+   */
+  const currentScheduleDate = useMemo(() => {
+    if (scheduleDate) {
+      return getFormatDate(scheduleDate, 'D MMMM')
+    }
+
+    return ''
+  }, [scheduleDate])
+
+  /**
+   * Возвращает надпись "вчера", "сегодня", "завтра"
+   */
+  const relativeDateCaption = useMemo(() => {
+    return getRelativeDateText(scheduleDate)
+  }, [scheduleDate])
+
+  /**
+   * Отформатированная надпись дата
+   */
+  const dateCaption = useMemo(() => {
+    if (relativeDateCaption) {
+      return [relativeDateCaption, currentScheduleDate].join(' | ')
+    }
+
+    return currentScheduleDate
+  }, [relativeDateCaption, currentScheduleDate])
+
   return (
     <div className={styles.schedule}>
       <div className={styles.header}>
-        <div className={styles.caption}>Сегодня | 29 сентября</div>
+        <div className={styles.caption}>{dateCaption}</div>
       </div>
       <div className={styles.content}>
-        {lessonsData.map((data, index) => (
-          <ScheduleItem key={index} lessonsData={data} />
-        ))}
+        {scheduleTemplate.map((lessonData) => {
+          const lessonDataStartTime = lessonData.startTime
+          const currentLessonData: IBaseApiResult[] = []
+
+          scheduleData.forEach((item) => {
+            if (item.startTime === lessonDataStartTime) {
+              currentLessonData.push(item)
+            }
+          })
+
+          return (
+            <ScheduleItem key={lessonData.id} lessonData={currentLessonData} />
+          )
+        })}
       </div>
     </div>
   )

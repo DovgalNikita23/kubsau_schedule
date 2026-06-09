@@ -1,30 +1,23 @@
-import { useTranslation } from 'react-i18next'
+import { LANG } from '@shared/constants'
 import { FullScheduleButton } from '@shared/ui'
 import { useGate, useUnit } from 'effector-react'
-import SearchIcon from '@mui/icons-material/Search'
-import { DateUpdateShow } from '@features/DateUpdateShow'
-import { FullScreenLoader } from '@features/FullScreenLoader'
-import { TitleAndWeekShow } from '@features/TitleAndWeekShow'
-import colors from '@app/assets/variables/_colors.module.scss'
-import { ChangeEvent, ReactElement, useCallback, useEffect } from 'react'
-import { IconButton, Input, ScheduleTable, useSnackBar } from '@shared/ui'
+import { ReactElement, useCallback } from 'react'
+import { Schedule, useSnackBar } from '@shared/ui'
+import { LangSwitcher } from '@features/LangSwitcher'
 
 import styles from './shedulePage.module.scss'
 import { ShedulePageMain } from './ShedulePageMain'
 import { ShedulePageHeader } from './ShedulePageHeader'
+import { FloatBottomTemplate } from './FloatBottomTemplate'
 import {
-  $currentWeek,
+  $currentWeekDay,
   $failConnect,
   $failConnectInfo,
-  $inputValue,
-  $isInputValueEmpty,
-  $isLoading,
-  $isScheduleDataLoading,
+  $language,
   $scheduleData,
   $successConnectInfo,
-  searchInputHandlerEvent,
-  setInputValueHandler,
   ShedulePageGate,
+  langaugeSwitchEvent,
 } from './config'
 
 /**
@@ -35,107 +28,54 @@ export const ShedulePage = (): ReactElement => {
   useGate(ShedulePageGate)
 
   const [
-    isLoading,
     failConnect,
     failConnectInfo,
     successConnectInfo,
-    inputValue,
-    setInputValue,
-    isInputValueEmpty,
-    searchInputHandler,
-    isScheduleDataLoading,
-    currentWeek,
-    // scheduleData,
+    scheduleData,
+    currentWeekDay,
+    langaugeSwitch,
+    language,
   ] = useUnit([
-    $isLoading,
     $failConnect,
     $failConnectInfo,
     $successConnectInfo,
-    $inputValue,
-    setInputValueHandler,
-    $isInputValueEmpty,
-    searchInputHandlerEvent,
-    $isScheduleDataLoading,
-    $currentWeek,
     $scheduleData,
+    $currentWeekDay,
+    langaugeSwitchEvent,
+    $language,
   ])
 
-  const { t } = useTranslation()
-
-  const { SnackBar, handleShowSnackBar } = useSnackBar({
+  const { SnackBar } = useSnackBar({
     message: failConnectInfo || successConnectInfo,
   })
 
-  const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.currentTarget.value)
-  }
+  const isFullScheduleButtonVisible = !!scheduleData?.length
 
-  const handleSearch = useCallback(() => {
-    if (isInputValueEmpty) {
-      handleShowSnackBar(t('Введите группу, преподавателя или аудиторию'))
-    } else {
-      searchInputHandler()
-    }
-  }, [handleShowSnackBar])
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Enter') {
-        handleSearch()
-      }
-    }
-
-    document.addEventListener('keydown', handleKeyDown)
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-    }
+  const switchHandler = useCallback((lang: LANG) => {
+    langaugeSwitch(lang)
   }, [])
-
-  if (isLoading) {
-    return (
-      <div className={styles.shedulePage}>
-        <ShedulePageHeader />
-        <ShedulePageMain>
-          <FullScreenLoader />
-        </ShedulePageMain>
-        {failConnect && SnackBar}
-      </div>
-    )
-  }
 
   return (
     <div className={styles.shedulePage}>
-      <ShedulePageHeader />
-      <ShedulePageMain>
-        <div className={styles.titleAndWeekShow}>
-          <TitleAndWeekShow groupName="ПИ2441" weekNumber={currentWeek} />
-        </div>
-        <div className={styles.updateDateBlock}>
-          <DateUpdateShow
-            date="2025-09-29T09:00:16.498Z"
-            formatPattern="YYYY-MM-DD"
-          />
-        </div>
-        <div className={styles.inputBlock}>
-          <Input
-            placeholder={t('Группа, преподаватель, аудитория')}
-            value={inputValue}
-            onChange={handleInputValue}
-            error={isInputValueEmpty}
-          />
-          <IconButton size="large" onClick={handleSearch}>
-            <SearchIcon sx={{ color: colors.OnPrimary }} />
-          </IconButton>
-        </div>
+      <ShedulePageHeader needShowWeekDayCarousel />
+      <ShedulePageMain needShowInput>
         <div className={styles.scheduleBlock}>
-          {isScheduleDataLoading ? <FullScreenLoader /> : <ScheduleTable />}
+          <Schedule
+            isSingle={true}
+            scheduleData={scheduleData}
+            currentWeekDay={currentWeekDay}
+          />
         </div>
-        <div className={styles.fullScheduleButton}>
-          <FullScheduleButton />
-        </div>
+        {isFullScheduleButtonVisible && (
+          <div className={styles.fullScheduleButton}>
+            <FullScheduleButton />
+          </div>
+        )}
       </ShedulePageMain>
-      {successConnectInfo && SnackBar}
+      <FloatBottomTemplate>
+        <LangSwitcher initialValue={language} onSwitchChange={switchHandler} />
+      </FloatBottomTemplate>
+      {(successConnectInfo || failConnect) && SnackBar}
     </div>
   )
 }

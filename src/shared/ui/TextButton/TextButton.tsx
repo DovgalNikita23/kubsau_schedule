@@ -1,9 +1,9 @@
-import { ReactElement } from 'react'
+import { ReactElement, ReactNode } from 'react'
 import { Button, ButtonProps } from '@mui/material'
 import colors from '@app/assets/variables/_colors.module.scss'
 
 interface ITextButton extends ButtonProps {
-  caption: React.ReactNode
+  caption: ReactNode
   textColor?: string
   width?: string
   height?: string

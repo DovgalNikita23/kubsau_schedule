@@ -16,7 +16,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "**/*.{js,mjs,cjs,ts,jsx,tsx}": "eslint --fix"
+    "**/*.{js,mjs,cjs,ts,jsx,tsx}": "eslint --fix --max-warnings=999 --no-error-on-unmatched-pattern"
   },
   "jest": {
     "preset": "ts-jest",
@@ -63,6 +63,8 @@
     "eslint": "^8.57.0",
     "eslint-plugin-perfectionist": "^5.6.0",
     "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
     "eslint-webpack-plugin": "^4.2.0",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "globals": "^15.9.0",

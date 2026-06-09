@@ -1,3 +1,4 @@
-export { TitleAndWeekShow } from './TitleAndWeekShow'
-export { DateUpdateShow } from './DateUpdateShow'
-export { FullScreenLoader } from './FullScreenLoader'
+export * from './TitleAndWeekShow'
+export * from './DateUpdateShow'
+export * from './FullScreenLoader'
+export * from './LangSwitcher'

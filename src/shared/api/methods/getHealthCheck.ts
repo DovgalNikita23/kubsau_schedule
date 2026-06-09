@@ -7,9 +7,13 @@ export interface IGetHealthCheck {
 }
 
 /**
- * Хелпер, проверяющий связь с БД
+ * Ручка, проверяющая связь с БД
  */
 export const getHealthCheck = async () => {
-  const response = await API.get(API_PATHS.pingApp)
+  const response = await API.get(API_PATHS.schedule.audience, {
+    params: {
+      name: 'ПИ2301',
+    },
+  })
   return response
 }

@@ -5,20 +5,24 @@ import { useTranslation } from 'react-i18next'
 import styles from './dateUpdateShow.module.scss'
 
 interface IDateUpdateShow {
-  date: string
+  date: Date | null
   formatPattern: string
 }
 
 /**
  * Фича, отображающая дату обновления данных расписания
  * @param {IDateUpdateShow}
- * @returns {ReactElement}
+ * @returns {ReactElement | null}
  */
 export const DateUpdateShow = ({
   date,
   formatPattern,
-}: IDateUpdateShow): ReactElement => {
+}: IDateUpdateShow): ReactElement | null => {
   const { t } = useTranslation()
+
+  if (!date) {
+    return null
+  }
 
   return (
     <div

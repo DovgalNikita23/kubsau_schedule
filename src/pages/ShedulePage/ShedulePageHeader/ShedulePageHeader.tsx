@@ -1,19 +1,23 @@
 import { Popover } from 'antd'
-import { Link } from 'react-router-dom'
 import { Pagination } from '@shared/ui'
 import { useUnit } from 'effector-react'
 import { IconButton } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { ROUTE_PATHS } from '@shared/constants'
-import { ReactElement, useCallback, useMemo } from 'react'
-import UStudentLogo from '@app/assets/svg/UStudentLogo.svg'
+import React, { ReactElement, useCallback, useMemo } from 'react'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 
+import Logo from './Logo'
 import styles from '../shedulePage.module.scss'
-import { getCurrentWeekEvent } from '../config'
+import {
+  $currentWeek,
+  currentWeekEventChanged,
+  getCurrentWeekDayEvent,
+  getCurrentWeekEvent,
+} from '../config'
 
 interface IShedulePageHeader {
   children?: React.ReactNode
+  needShowWeekDayCarousel?: boolean
 }
 
 /**
@@ -23,19 +27,28 @@ interface IShedulePageHeader {
  */
 export const ShedulePageHeader = ({
   children,
+  needShowWeekDayCarousel = false,
 }: IShedulePageHeader): ReactElement => {
   const { t } = useTranslation()
 
-  const [getCurrentWeek] = useUnit([getCurrentWeekEvent])
+  const [currentWeek, getCurrentWeek, getCurrentWeekDay, currentWeekChanged] =
+    useUnit([
+      $currentWeek,
+      getCurrentWeekEvent,
+      getCurrentWeekDayEvent,
+      currentWeekEventChanged,
+    ])
 
   /**
    * Обработчик клика по "календарю"
    */
   const handleChangeDay = useCallback(
-    (weekNumber: number) => {
+    (weekNumber: number, weekDayNumber: number) => {
       getCurrentWeek(weekNumber)
+      getCurrentWeekDay(weekDayNumber)
+      currentWeekChanged(weekNumber !== currentWeek)
     },
-    [getCurrentWeek]
+    [currentWeek, getCurrentWeek, getCurrentWeekDay, currentWeekChanged]
   )
 
   /**
@@ -55,14 +68,7 @@ export const ShedulePageHeader = ({
   return (
     <header className={styles.shedulePageHeader}>
       <div className={styles.headerBlock}>
-        <div className={styles.logoBlock}>
-          <div className={styles.logo}>
-            <Link
-              to={ROUTE_PATHS.index}
-              children={<UStudentLogo width="100%" height="100%" />}
-            />
-          </div>
-        </div>
+        <Logo />
         <div className={styles.title}>{t('Расписание')}</div>
         <div className={styles.datePickerBlock}>
           <div className={styles.datePicker}>
@@ -83,9 +89,11 @@ export const ShedulePageHeader = ({
           </div>
         </div>
       </div>
-      <div className={styles.carousel}>
-        <Pagination total={60} onDayChange={handleChangeDay} />
-      </div>
+      {needShowWeekDayCarousel && (
+        <div className={styles.carousel}>
+          <Pagination total={60} onDayChange={handleChangeDay} />
+        </div>
+      )}
       {children}
     </header>
   )

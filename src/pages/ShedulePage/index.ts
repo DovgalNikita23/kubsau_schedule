@@ -1,2 +1,2 @@
 export { ShedulePage } from './ShedulePage'
-export { FullScheduleTablePage } from './FullSchedulePage'
+export { FullSchedulePage } from './FullSchedulePage'

@@ -12,8 +12,8 @@ $OutlinedButtonBorder: rgba(200, 200, 200, 0.5);
 $Crimson: #c64141;
 $SkyBlue: #2eb4ff;
 $DevidedGray: #b1b1b1;
-$IsLecture: #efeff0;
-$isNotLecture: #ffe4b5;
+$IsNotLecture: #efeff0;
+$IsLecture: #ffe4b5;
 
 :export {
   OutlinedButtonContentColor: $OutlinedButtonContentColor;
@@ -31,5 +31,5 @@ $isNotLecture: #ffe4b5;
   SkyBlue: $SkyBlue;
   DevidedGray: $DevidedGray;
   IsLecture: $IsLecture;
-  isNotLecture: $isNotLecture;
+  IsNotLecture: $IsNotLecture;
 }

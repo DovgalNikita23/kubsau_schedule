@@ -31,25 +31,48 @@ export const getWeekDays = (currentWeek: number = 0): IGetWeekDays[] => {
     i18n.t(WEEK_DAYS.Su),
   ]
 
-  // Определяем, является ли сегодня воскресеньем
   const today = dayjs()
+  const isSunday = today.isoWeekday() === 7
 
-  // Если воскресенье, сдвигаем на одну неделю вперед
-  const monday = today.isoWeekday(1 + 7 * currentWeek)
+  // Получаем текущий понедельник (с учётом воскресенья)
+  let currentMonday: dayjs.Dayjs
 
-  const weekNumber = getCurrentWeek(currentWeek) // Номер недели: 0 или 1
+  if (isSunday) {
+    // В воскресенье "текущая" неделя для отображения - следующая
+    currentMonday = today.add(1, 'week').isoWeekday(1)
+  } else {
+    // В остальные дни - текущая
+    currentMonday = today.isoWeekday(1)
+  }
+
+  // Сдвигаем на нужное количество недель
+  // currentWeek=0 → без сдвига
+  // currentWeek=1 → на неделю назад (для воскресенья) или вперёд (для других дней)
+  let targetMonday: dayjs.Dayjs
+
+  if (isSunday) {
+    // В воскресенье: 0 - текущая (следующая), 1 - предыдущая
+    targetMonday = currentMonday.subtract(currentWeek, 'week')
+  } else {
+    // В другие дни: 0 - текущая, 1 - следующая
+    targetMonday = currentMonday.add(currentWeek, 'week')
+  }
+
+  // Номер недели для отображения
+  const weekNumber = getCurrentWeek(
+    isSunday && currentWeek === 1 ? -1 : currentWeek
+  )
 
   const week: IGetWeekDays[] = []
 
-  // Создаем массив объектов от понедельника до субботы
   for (let i = 0; i < 6; i++) {
-    const currentDay = monday.add(i, 'day')
+    const currentDay = targetMonday.add(i, 'day')
     week.push({
       id: i + 1,
       day_of_week: daysOfWeek[i],
-      day_of_week_str: currentDay.format('DD'), // Форматируем день месяца как строку
-      day_of_week_num: i + 1, // Номер дня недели, начиная с понедельника
-      week_number: weekNumber, // Номер недели: 0 или 1
+      day_of_week_str: currentDay.format('DD'),
+      day_of_week_num: i + 1,
+      week_number: weekNumber,
     })
   }
 

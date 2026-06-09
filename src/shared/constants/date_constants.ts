@@ -10,3 +10,11 @@ export const WEEK_DAYS = {
   Sa: 'Сб',
   Su: 'Вс',
 }
+
+/**
+ * Перечисление номером недель
+ */
+export enum WEEK_NUMBERS {
+  FIRST, // первая неделя
+  SECOND, // вторая неделя
+}

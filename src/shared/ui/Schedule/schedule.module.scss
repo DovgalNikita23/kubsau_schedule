@@ -77,10 +77,10 @@
 
       .lessonType {
         width: 10px;
-        background-color: $IsLecture;
+        background-color: $IsNotLecture;
 
         &.isLecture {
-          background-color: $isNotLecture;
+          background-color: $IsLecture;
         }
       }
 
@@ -113,15 +113,40 @@
             .teacher {
               font-family: Roboto-Regular;
               color: $Primary;
+
+              & > a {
+                color: inherit;
+              }
             }
           }
 
-          .audience {
+          .additionalInfo {
+            @include flexCol;
+            align-items: flex-end;
+            row-gap: 5px;
             font-family: Roboto-Regular;
             font-size: 16px;
 
             @media (max-width: $small) {
               font-size: 12px;
+            }
+
+            .audience {
+              color: $OnBackground;
+            }
+
+            .invisible {
+              visibility: hidden;
+            }
+
+            .manyTeachersBlock {
+              display: flex;
+              column-gap: 5px;
+              flex-wrap: nowrap;
+
+              .groupName {
+                color: $Primary;
+              }
             }
           }
         }
