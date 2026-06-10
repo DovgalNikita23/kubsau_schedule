@@ -72,7 +72,7 @@ export const ShedulePage = (): ReactElement => {
           </div>
         )}
       </ShedulePageMain>
-      <FloatBottomTemplate>
+      <FloatBottomTemplate hasSearchedData={isFullScheduleButtonVisible}>
         <LangSwitcher initialValue={language} onSwitchChange={switchHandler} />
       </FloatBottomTemplate>
       {(successConnectInfo || failConnect) && SnackBar}

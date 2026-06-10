@@ -163,7 +163,14 @@
 
     @media (min-width: $mobileS) and (max-width: $large) {
       right: 3%;
-      top: 13%;
+      bottom: 2%;
+    }
+
+    &.hasSearchedData {
+      @media (min-width: $mobileS) and (max-width: $large) {
+        right: 3%;
+        top: 13%;
+      }
     }
   }
 }
